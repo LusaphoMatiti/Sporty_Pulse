@@ -8,15 +8,24 @@ const products = require("./products.json");
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log(`Starting seed...`);
+  console.log(`Starting seed for ${products.length} products...`);
 
-  // Use createMany for better performance
-  const result = await prisma.product.createMany({
-    data: products,
-    skipDuplicates: true, // Prevents errors if products already exist
-  });
+  // Use individual create calls and explicitly set id to undefined
+  for (const product of products) {
+    try {
+      await prisma.product.create({
+        data: {
+          ...product,
+          id: undefined, // Explicitly tell Prisma to use the default UUID
+        },
+      });
+      console.log(`✅ Created: ${product.name}`);
+    } catch (error) {
+      console.error(`❌ Failed to create ${product.name}:`, error.message);
+    }
+  }
 
-  console.log(`Seeded ${result.count} products successfully!`);
+  console.log(`🎉 Seeding completed!`);
 }
 
 main()
