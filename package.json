@@ -10,7 +10,8 @@
     "dev": "next dev --turbopack",
     "build": "npx prisma generate && next build",
     "start": "next start",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "db:seed": "prisma db seed"
   },
   "dependencies": {
     "@heroui/accordion": "2.2.23",
@@ -78,6 +79,7 @@
     "use-debounce": "^10.0.6"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.4.0",
     "@next/eslint-plugin-next": "15.3.4",
     "@react-types/shared": "3.30.0",
     "@tailwindcss/postcss": "4.1.11",

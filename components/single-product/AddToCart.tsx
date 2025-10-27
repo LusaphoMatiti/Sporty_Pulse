@@ -9,6 +9,5 @@ const AddToCart = ({ productId }: { productId: string }) => {
       add to cart
     </Button>
   );
-  s;
 };
 export default AddToCart;
