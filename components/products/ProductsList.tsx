@@ -1,9 +1,22 @@
 import { formatCurrency } from "@/utils/format";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { Product } from "@prisma/client";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
+
+// Define local type instead of importing from @prisma/client
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  company: string;
+  description: string;
+  featured: boolean;
+  clerkId: string;
+  createdAt: string;
+  updatedAt: string;
+};
 
 const ProductsList = ({ products }: { products: Product[] }) => {
   return (
