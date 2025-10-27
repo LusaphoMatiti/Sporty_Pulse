@@ -1,3 +1,4 @@
+// prisma/seed.js
 import { PrismaClient } from "@prisma/client";
 import { createRequire } from "module";
 
@@ -7,19 +8,22 @@ const products = require("./products.json");
 const prisma = new PrismaClient();
 
 async function main() {
-  for (const product of products) {
-    await prisma.product.create({
-      data: product,
-    });
-  }
+  console.log(`Starting seed...`);
+
+  // Use createMany for better performance
+  const result = await prisma.product.createMany({
+    data: products,
+    skipDuplicates: true, // Prevents errors if products already exist
+  });
+
+  console.log(`Seeded ${result.count} products successfully!`);
 }
 
 main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
+  .catch((e) => {
+    console.error("Seed failed:", e);
     process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
   });
