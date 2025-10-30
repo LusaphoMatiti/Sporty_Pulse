@@ -1,22 +1,9 @@
 import { formatCurrency } from "@/utils/format";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
+import { Product } from "@prisma/client";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
-
-// Define local type instead of importing from @prisma/client
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  company: string;
-  description: string;
-  featured: boolean;
-  clerkId: string;
-  createdAt: string;
-  updatedAt: string;
-};
 
 const ProductsList = ({ products }: { products: Product[] }) => {
   return (
@@ -28,7 +15,7 @@ const ProductsList = ({ products }: { products: Product[] }) => {
 
         return (
           <article key={productId} className="group relative">
-            <Link href={`/products/${productId}`}>
+            <Link href={`/prodcts/${productId}`}>
               <Card className="transform group-hover:shadow-xl transition-shadow duration">
                 <CardContent className="p-8 gap-y-4 grid md:grid-cols-3">
                   <div className="relative h-64 md:h-48 md:w-48">
