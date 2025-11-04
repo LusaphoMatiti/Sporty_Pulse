@@ -1,43 +1,51 @@
-import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
+"use client";
 
-import { Providers } from "./providers";
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import "@/styles/globals.css";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  ClerkLoaded,
+  SignIn,
+} from "@clerk/nextjs";
 import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/global/Container";
+import { Providers } from "./providers";
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: { icon: "/favicon.ico" },
-};
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
+import { isPublicRoute } from "@/utils/publicRoutes";
+import { usePathname } from "next/navigation"; // get current path
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   return (
-    <html suppressHydrationWarning lang="en">
-      <body>
-        <Providers>
-          <div className="relative flex flex-col h-screen text-foreground bg-background">
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <Providers>
             <Navbar />
-            <Container className="py-20">{children}</Container>
-          </div>
-        </Providers>
-      </body>
-    </html>
+            <Container className="py-20">
+              {isPublicRoute(pathname) ? (
+                children
+              ) : (
+                // Protected pages show SignedIn / SignedOut logic
+                <ClerkLoaded>
+                  <SignedIn>{children}</SignedIn>
+                  <SignedOut>
+                    <div className="flex justify-center mt-20">
+                      <SignIn routing="hash" signUpUrl="/sign-up" />
+                    </div>
+                  </SignedOut>
+                </ClerkLoaded>
+              )}
+            </Container>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -1,27 +1,33 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    // Use a modern baseline; Next.js targets ES2020+ internally
+    "target": "es2020",
     "lib": ["dom", "dom.iterable", "esnext"],
+
+    // Module system used by Next.js
+    "module": "esnext",
+    "moduleResolution": "bundler", // ✅ fix: resolves "next/navigation" etc.
+
+    // Common safety flags
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+
+    // Ensure Next and Node typings are available
+    "types": ["node"],
+    "jsx": "preserve",
+
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+
+    "plugins": [{ "name": "next" }]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
