@@ -1,35 +1,29 @@
 import { fetchFeaturedPro } from "@/utils/action";
-import EmptyList from "../global/EmptyList";
-import SectionTitle from "../global/SectionTitle";
+import { getServerUserId } from "@/utils/server-actions/auth";
+import { fetchFavoriteId } from "@/utils/server-actions/favorite";
 import ProductsGrid from "../products/ProductsGrid";
-
-type Product = {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-};
-
-type ServerBoundaryProps = {
-  products: Product[];
-};
+import SectionTitle from "../global/SectionTitle";
+import EmptyList from "../global/EmptyList";
 
 export default async function FeaturedProducts() {
+  const userId = await getServerUserId();
   const products = await fetchFeaturedPro();
 
   if (!products.length) {
     return <EmptyList />;
   }
 
-  return <ServerBoundary products={products} />;
-}
+  const productsWithFavorite = await Promise.all(
+    products.map(async (product) => ({
+      ...product,
+      favoriteId: userId ? await fetchFavoriteId(product.id) : null,
+    }))
+  );
 
-// 👇 subcomponent defined below in same file
-function ServerBoundary({ products }: ServerBoundaryProps) {
   return (
     <section className="pt-24">
       <SectionTitle text="featured products" />
-      <ProductsGrid products={products} />
+      <ProductsGrid products={productsWithFavorite} userId={userId} />
     </section>
   );
 }

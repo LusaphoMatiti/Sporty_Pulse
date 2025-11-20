@@ -7,8 +7,13 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.pexels.com",
       },
+      {
+        protocol: "https",
+        hostname: "xewudrozihbinbtsihvw.supabase.co",
+      },
     ],
   },
+
   eslint: {
     ignoreDuringBuilds: true,
   },

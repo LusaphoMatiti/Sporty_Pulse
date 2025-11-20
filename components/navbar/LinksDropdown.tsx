@@ -17,9 +17,13 @@ import {
   SignUpButton,
 } from "@clerk/clerk-react";
 import SignOutLink from "./SignOutLink";
+import { useAuth } from "@clerk/nextjs";
 
-const LinksDropdown = () => {
+function LinksDropdown() {
   const router = useRouter();
+  const { userId } = useAuth();
+
+  const isAdmin = userId === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
 
   return (
     <DropdownMenu>
@@ -53,15 +57,19 @@ const LinksDropdown = () => {
         </SignedOut>
 
         <SignedIn>
-          {links.map((link) => (
-            <DropdownMenuItem
-              key={link.href}
-              onClick={() => router.push(link.href)}
-              className="capitalize w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              {link.label}
-            </DropdownMenuItem>
-          ))}
+          {links.map((link) => {
+            if (link.label === "dashboard" && !isAdmin) return null;
+
+            return (
+              <DropdownMenuItem
+                key={link.href}
+                onClick={() => router.push(link.href)}
+                className="capitalize w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                {link.label}
+              </DropdownMenuItem>
+            );
+          })}
           <DropdownMenuSeparator className="border-gray-200 dark:border-gray-700" />
           <DropdownMenuItem className="hover:bg-gray-100 dark:hover:bg-gray-700">
             <SignOutLink />
@@ -70,6 +78,6 @@ const LinksDropdown = () => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}
 
 export default LinksDropdown;

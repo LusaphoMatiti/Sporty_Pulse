@@ -1,20 +1,18 @@
-"use server";
+"use client";
 
-import { getServerUserId } from "@/utils/server-actions/auth";
-import { fetchFavoriteId } from "@/utils/server-actions/favorite";
 import CardSignInButtonClient from "../form/CardSignInButtonClient";
 import FavoriteToggleForm from "./FavoriteToggleForm";
 
-export default async function FavoriteToggleButton({
+export default function FavoriteToggleButtonClient({
+  userId,
+  favoriteId,
   productId,
 }: {
+  userId: string | null;
+  favoriteId: string | null;
   productId: string;
 }) {
-  const userId = await getServerUserId();
-
   if (!userId) return <CardSignInButtonClient />;
-
-  const favoriteId = await fetchFavoriteId(productId);
 
   return <FavoriteToggleForm favoriteId={favoriteId} productId={productId} />;
 }

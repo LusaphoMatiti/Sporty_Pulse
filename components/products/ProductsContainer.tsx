@@ -1,10 +1,10 @@
-// ProductsContainer.tsx (Server Component)
+// components/products/ProductsContainer.tsx
+import { getServerUserId } from "@/utils/server-actions/auth";
+import { fetchFavoriteId } from "@/utils/server-actions/favorite";
+import { fetchAllProducts } from "@/utils/action";
 import ProductsGrid from "./ProductsGrid";
 import ProductsList from "./ProductsList";
-import { fetchAllProducts } from "@/utils/action";
-import ProductsHeader from "./ProductsHeader"; // client component
-import { Separator } from "@/components/ui/separator";
-import { Divider } from "@heroui/react";
+import ProductsHeader from "./ProductsHeader";
 
 export default async function ProductsContainer({
   layout,
@@ -14,18 +14,23 @@ export default async function ProductsContainer({
   search: string;
 }) {
   const products = await fetchAllProducts({ search });
-  const totalProducts = products.length;
+  const userId = await getServerUserId();
+
+  // Resolve favoriteId for each product
+  const productsWithFavorite = await Promise.all(
+    products.map(async (product) => {
+      const favoriteId = userId ? await fetchFavoriteId(product.id) : null;
+      return { ...product, favoriteId };
+    })
+  );
 
   return (
     <>
-      {/* ✅ Client component boundary */}
-      <ProductsHeader totalProducts={totalProducts} />
-
-      {/* ✅ Server-side rendering */}
+      <ProductsHeader totalProducts={products.length} />
       {layout === "grid" ? (
-        <ProductsGrid products={products} />
+        <ProductsGrid products={productsWithFavorite} userId={userId} />
       ) : (
-        <ProductsList products={products} />
+        <ProductsList products={productsWithFavorite} userId={userId} />
       )}
     </>
   );

@@ -1,4 +1,3 @@
-"use client";
 import Container from "../global/Container";
 import CartButton from "./CartButton";
 import DarkMode from "./DarkMode";
