@@ -1,13 +1,11 @@
 generator client {
   provider = "prisma-client-js"
-   engineType = "client" 
 }
 
 datasource db {
   provider = "postgresql"
-  
+  url      = env("DATABASE_URL")
 }
-
 
 model Product {
   id          String   @id @default(cuid())  
@@ -26,9 +24,9 @@ model Product {
 }
 
 model Favorite {
-  id      String  @id @default(uuid())
-  clerkId String
-  product  Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  id        String   @id @default(uuid())
+  clerkId   String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
