@@ -33,11 +33,10 @@ function FormContainer({
       return;
     }
 
-    // Wrap in async IIFE to handle pending correctly
     (async () => {
       setPending(true);
       try {
-        await functionAction(formData); // <-- await so pending works
+        await functionAction(formData);
       } catch (err) {
         console.error(err);
       } finally {
@@ -46,10 +45,9 @@ function FormContainer({
     })();
   };
 
-  // Inject pending prop into children
   const childrenWithPending = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      return React.cloneElement(child, { pending });
+      return React.cloneElement(child as React.ReactElement<any>, { pending });
     }
     return child;
   });

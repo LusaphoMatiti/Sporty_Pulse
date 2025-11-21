@@ -65,7 +65,7 @@ export const fetchSingleProduct = async (productId: string) => {
 export const createProduction = async (
   prevState: any,
   formData: FormData
-): Promise<{ message: string }> => {
+): Promise<{ success: boolean; message: string }> => {
   const user = await getAuthUser();
 
   try {
@@ -73,21 +73,14 @@ export const createProduction = async (
     const file = formData.get("image") as File;
 
     const validatedFields = validateWithZodSchema(productSchema, rawData);
-    const validatedFile:
-      | { success: true; data: { image: File } }
-      | { success: false; message: string } = validateWithZodSchema(
-      imageSchema,
-      { image: file }
-    );
+    const validatedFile = validateWithZodSchema(imageSchema, { image: file });
 
-    // Check if validation failed
     if (!validatedFields.success) {
-      return { message: validatedFields.message };
+      return { success: false, message: validatedFields.message };
     }
 
-    // Check if file validation failed
     if (!validatedFile.success) {
-      return { message: validatedFile.message };
+      return { success: false, message: validatedFile.message };
     }
 
     const fullPath = await uploadImage(validatedFile.data.image);
@@ -99,17 +92,24 @@ export const createProduction = async (
         clerkId: user.id,
       },
     });
+
+    return {
+      success: true,
+      message: "Product created successfully",
+    };
   } catch (error) {
-    // Handle the body size limit error specifically
     if (
       error instanceof Error &&
       error.message.includes("Body exceeded 1 MB limit")
     ) {
-      return { message: "File size must be less than 1 MB" };
+      return { success: false, message: "File size must be less than 1 MB" };
     }
-    return renderError(error);
+
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "An error occurred",
+    };
   }
-  redirect("/admin/products");
 };
 
 export const fetchAdminProducts = async () => {
@@ -122,7 +122,10 @@ export const fetchAdminProducts = async () => {
   return products;
 };
 
-export const deleteProductAction = async (prevState: { productId: string }) => {
+export const deleteProductAction = async (
+  prevState: { productId: string },
+  formData: FormData
+): Promise<{ success: boolean; message: string }> => {
   const { productId } = prevState;
   await getAdminUser();
 
@@ -131,14 +134,15 @@ export const deleteProductAction = async (prevState: { productId: string }) => {
       where: { id: productId },
     });
 
-    // Delete image
     await deleteImage(product.image);
-
     revalidatePath("/admin/products");
 
-    return { message: "product removed" };
+    return { success: true, message: "product removed" };
   } catch (error) {
-    return renderError(error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "an error occurred",
+    };
   }
 };
 
@@ -238,7 +242,7 @@ export const fetchFavoriteId = async ({ productId }: { productId: string }) => {
   return favorite?.id || null;
 };
 
-export async function toggleFavorite(formData: FormData) {
+export async function toggleFavorite(prevState: any, formData: FormData) {
   const { userId } = await auth();
   if (!userId) {
     return { success: false, message: "You must be logged in." };
