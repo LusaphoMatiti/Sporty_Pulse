@@ -157,28 +157,29 @@ export const updateProductAction = async (
   prevState: any,
   formData: FormData
 ) => {
-  await getAdminUser();
-
   try {
-    const productId = formData.get("id") as string;
+    const id = formData.get("id") as string;
+    const name = formData.get("name") as string;
+    const company = formData.get("company") as string;
+    const description = formData.get("description") as string;
+    const price = Number(formData.get("price"));
+    const featured = formData.has("featured");
 
-    const rawData = Object.fromEntries(formData);
-    const validatedFields = validateWithZodSchema(productSchema, rawData);
-
-    if (!validatedFields.success) {
-      return { message: validatedFields.message };
-    }
-
+    // Add validation if needed
     await db.product.update({
-      where: {
-        id: productId,
-      },
-      data: validatedFields.data,
+      where: { id },
+      data: { name, company, description, price, featured },
     });
-    revalidatePath(`/admin/products/${productId}/edit`);
-    return { message: "Product updated successfully" };
+
+    revalidatePath(`/admin/products/${id}/edit`);
+    return {
+      success: true,
+      message: "Product updated successfully",
+    };
   } catch (error) {
-    return renderError(error);
+    const message =
+      error instanceof Error ? error.message : "Failed to update product";
+    return { success: false, message };
   }
 };
 
@@ -193,26 +194,33 @@ export const updateProductImageAction = async (
     const oldImageUrl = formData.get("url") as string;
 
     const validatedFile = validateWithZodSchema(imageSchema, { image });
-
     if (!validatedFile.success) {
-      throw new Error(validatedFile.message);
+      return {
+        success: false,
+        message: "Invalid file: " + validatedFile.message,
+      };
     }
-    const fullPath = await uploadImage(validatedFile.data.image);
 
+    const fullPath = await uploadImage(validatedFile.data.image);
     await deleteImage(oldImageUrl);
 
     await db.product.update({
-      where: {
-        id: productId,
-      },
-      data: {
-        image: fullPath,
-      },
+      where: { id: productId },
+      data: { image: fullPath },
     });
+
     revalidatePath(`/admin/products/${productId}/edit`);
-    return { message: "Product Image updated successfully" };
+    return {
+      success: true,
+      message: "Product image updated successfully",
+    };
   } catch (error) {
-    return renderError(error);
+    const errorMessage =
+      error instanceof Error ? error.message : "An unknown error occurred";
+    return {
+      success: false,
+      message: errorMessage,
+    };
   }
 };
 

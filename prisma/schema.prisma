@@ -1,14 +1,16 @@
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
+  engineType = "client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  
 }
 
 model Product {
-  id          String   @id @default(cuid())  
+  id          String   @id @default(cuid())
   name        String
   company     String
   description String
@@ -19,7 +21,6 @@ model Product {
   updatedAt   DateTime @updatedAt
   clerkId     String
   favorites   Favorite[]
-
   @@map("products")
 }
 
@@ -30,6 +31,5 @@ model Favorite {
   productId String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   @@unique([clerkId, productId])
 }

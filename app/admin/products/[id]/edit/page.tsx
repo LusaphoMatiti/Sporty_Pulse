@@ -11,7 +11,13 @@ import CheckboxInput from "@/components/form/CheckboxInput";
 import FormInput from "@/components/form/FormInput";
 import ImageInputContainer from "@/components/form/ImageInputContainer";
 
-async function EditProductPage({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+async function EditProductPage({ params }: PageProps) {
   const { id } = params;
   const product = await fetchAdminProductDetails(id);
   const { name, company, description, featured, price } = product;
@@ -55,7 +61,7 @@ async function EditProductPage({ params }: { params: { id: string } }) {
           <div className="mt-6">
             <CheckboxInput
               name="featured"
-              label="feautred"
+              label="featured"
               defaultChecked={featured}
             />
           </div>
@@ -65,4 +71,5 @@ async function EditProductPage({ params }: { params: { id: string } }) {
     </section>
   );
 }
+
 export default EditProductPage;
