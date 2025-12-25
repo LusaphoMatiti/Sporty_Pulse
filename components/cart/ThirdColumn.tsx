@@ -18,7 +18,7 @@ const ThirdColumn = ({ quantity, id }: { quantity: number; id: string }) => {
   return (
     <div className="md:ml-8">
       {/* UPDATE QUANTITY */}
-      <FormContainer
+      <form
         action={async (formData: FormData) => {
           toast.loading("Updating quantity...");
           await updateCartItemAction(formData);
@@ -36,10 +36,10 @@ const ThirdColumn = ({ quantity, id }: { quantity: number; id: string }) => {
         />
 
         <SubmitButton size="sm" className="mt-4" text="Update" />
-      </FormContainer>
+      </form>
 
       {/* REMOVE ITEM */}
-      <FormContainer
+      <form
         action={async (formData: FormData) => {
           toast.loading("Removing item...");
           await removeCartItemAction(formData);
@@ -48,7 +48,7 @@ const ThirdColumn = ({ quantity, id }: { quantity: number; id: string }) => {
       >
         <input type="hidden" name="id" value={id} />
         <SubmitButton size="sm" className="mt-2" text="Remove" />
-      </FormContainer>
+      </form>
     </div>
   );
 };
