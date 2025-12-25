@@ -1,44 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
 import { toast } from "sonner";
-import { toggleFavorite } from "@/utils/server-actions/favorite";
+import { FavoriteState } from "@/utils/server/favorite";
 import { CardSubmitButton } from "../form/Buttons";
 import FormContainer from "../form/FormContainer";
+import { toggleFavorite } from "@/utils/server/favorite";
 
-type FavoriteToggleButtonFormProps = {
+type Props = {
   productId: string;
   favoriteId: string | null;
-  onToggle?: (newFavoriteId: string | null) => void; // notify parent
+  onToggle?: (newFavoriteId: string | null) => void;
+};
+
+const initialState: FavoriteState = {
+  success: false,
+  message: "",
+  favoriteId: null,
 };
 
 export default function FavoriteToggleForm({
   productId,
   favoriteId,
   onToggle,
-}: FavoriteToggleButtonFormProps) {
-  const [currentFavoriteId, setCurrentFavoriteId] = useState(favoriteId);
+}: Props) {
+  const [state, formAction] = useFormState(toggleFavorite, {
+    ...initialState,
+    favoriteId,
+  });
 
-  const actionHandler = async (_prevState: any, formData: FormData) => {
-    const result = await toggleFavorite(_prevState, formData);
-    if (result.success) {
-      // Update local favorite state
-      const newFavoriteId = currentFavoriteId ? null : productId;
-      setCurrentFavoriteId(newFavoriteId);
-      onToggle?.(newFavoriteId);
+  useEffect(() => {
+    if (!state.message) return;
 
-      toast.success(result.message);
+    if (state.success) {
+      toast.success(state.message);
+      onToggle?.(state.favoriteId);
     } else {
-      toast.error(result.message);
+      toast.error(state.message);
     }
-    return result;
-  };
+  }, [state, onToggle]);
 
   return (
-    <FormContainer action={actionHandler}>
+    <FormContainer action={formAction}>
       <input type="hidden" name="productId" value={productId} />
-      <input type="hidden" name="favoriteId" value={currentFavoriteId || ""} />
-      <CardSubmitButton isFavorite={!!currentFavoriteId} />
+      <input type="hidden" name="favoriteId" value={state.favoriteId ?? ""} />
+      <CardSubmitButton isFavorite={!!state.favoriteId} />
     </FormContainer>
   );
 }

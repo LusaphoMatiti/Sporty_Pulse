@@ -28,6 +28,7 @@ export async function fetchFavoriteId(productId: string) {
 export type FavoriteState = {
   success: boolean;
   message: string;
+  favoriteId: string | null;
 };
 
 export async function toggleFavorite(
@@ -37,7 +38,11 @@ export async function toggleFavorite(
   const userId = await getServerUserId();
 
   if (!userId) {
-    return { success: false, message: "Not authenticated" };
+    return {
+      success: false,
+      message: "Not authenticated",
+      favoriteId: prevState.favoriteId,
+    };
   }
 
   const productId = formData.get("productId") as string;
@@ -50,19 +55,24 @@ export async function toggleFavorite(
       return {
         success: true,
         message: "Removed from favorites",
+        favoriteId: null,
       };
     }
 
-    await db.favorite.create({
+    const newFavorite = await db.favorite.create({
       data: {
         productId,
         clerkId: userId,
+      },
+      select: {
+        id: true,
       },
     });
 
     return {
       success: true,
       message: "Added to favorites",
+      favoriteId: newFavorite.id,
     };
   } catch (error) {
     console.error("Toggle favorite error:", error);
@@ -70,6 +80,7 @@ export async function toggleFavorite(
     return {
       success: false,
       message: "An error occurred",
+      favoriteId: prevState.favoriteId,
     };
   }
 }

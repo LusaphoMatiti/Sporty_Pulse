@@ -1,7 +1,7 @@
 "use server";
 
-import { getServerUserId } from "@/utils/server-actions/auth";
-import { fetchFavoriteId } from "@/utils/server-actions/favorite";
+import { getServerUserId } from "@/utils/server/auth";
+import { fetchFavoriteId } from "@/utils/server/favorite";
 import CardSignInButtonClient from "../form/CardSignInButtonClient";
 import FavoriteToggleForm from "./FavoriteToggleForm";
 

@@ -1,6 +1,6 @@
 import { fetchFeaturedPro } from "@/utils/action";
-import { getServerUserId } from "@/utils/server-actions/auth";
-import { fetchFavoriteId } from "@/utils/server-actions/favorite";
+import { getServerUserId } from "@/utils/server/auth";
+import { fetchFavoriteId } from "@/utils/server/favorite";
 import ProductsGrid from "../products/ProductsGrid";
 import SectionTitle from "../global/SectionTitle";
 import EmptyList from "../global/EmptyList";

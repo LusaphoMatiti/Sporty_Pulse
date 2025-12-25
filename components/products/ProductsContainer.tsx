@@ -1,6 +1,6 @@
 // components/products/ProductsContainer.tsx
-import { getServerUserId } from "@/utils/server-actions/auth";
-import { fetchFavoriteId } from "@/utils/server-actions/favorite";
+import { getServerUserId } from "@/utils/server/auth";
+import { fetchFavoriteId } from "@/utils/server/favorite";
 import { fetchAllProducts } from "@/utils/action";
 import ProductsGrid from "./ProductsGrid";
 import ProductsList from "./ProductsList";

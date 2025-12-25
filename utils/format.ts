@@ -5,3 +5,12 @@ export const formatCurrency = (amount: number | null) => {
     currency: "ZAR",
   }).format(value);
 };
+
+export const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat("en-ZA", {
+    timeZone: "Africa/Johannesburg",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+};
