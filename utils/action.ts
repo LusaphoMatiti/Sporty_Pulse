@@ -94,6 +94,13 @@ export const fetchAdminProducts = async () => {
   return db.products.findMany({ orderBy: { createdAt: "desc" } });
 };
 
+export const fetchAdminProductDetails = async (productId: string) => {
+  await getAdminUser();
+  const product = await db.products.findUnique({ where: { id: productId } });
+  if (!product) redirect("/admin/products");
+  return product;
+};
+
 export const deleteProductAction = async (
   prevState: { productId: string },
   formData: FormData
@@ -130,7 +137,9 @@ export const updateProductAction = async (
       where: { id },
       data: { name, company, description, price, featured },
     });
+
     revalidatePath(`/admin/products/${id}/edit`);
+
     return { success: true, message: "Product updated successfully" };
   } catch (error) {
     return {
