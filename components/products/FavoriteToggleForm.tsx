@@ -42,10 +42,10 @@ export default function FavoriteToggleForm({
   }, [state, onToggle]);
 
   return (
-    <FormContainer action={formAction}>
+    <form action={formAction}>
       <input type="hidden" name="productId" value={productId} />
       <input type="hidden" name="favoriteId" value={state.favoriteId ?? ""} />
       <CardSubmitButton isFavorite={!!state.favoriteId} />
-    </FormContainer>
+    </form>
   );
 }
