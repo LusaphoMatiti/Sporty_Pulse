@@ -3,12 +3,15 @@
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
 
-const initialState = {
+export type ActionResult = {
+  success: boolean;
+  message: string;
+};
+
+const initialState: ActionResult = {
   success: false,
   message: "",
 };
-
-export type ActionResult = typeof initialState;
 
 type ActionFunction = (
   prevState: ActionResult,
@@ -26,8 +29,13 @@ function FormContainer({
 
   useEffect(() => {
     if (!state.message) return;
-    state.success ? toast.success(state.message) : toast.error(state.message);
-  }, [state]);
+
+    if (state.success) {
+      toast.success(state.message);
+    } else {
+      toast.error(state.message);
+    }
+  }, [state.success, state.message]);
 
   return <form action={formAction}>{children}</form>;
 }
