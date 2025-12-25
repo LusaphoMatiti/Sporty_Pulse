@@ -137,9 +137,7 @@ export const updateProductAction = async (
       where: { id },
       data: { name, company, description, price, featured },
     });
-
     revalidatePath(`/admin/products/${id}/edit`);
-
     return { success: true, message: "Product updated successfully" };
   } catch (error) {
     return {
@@ -443,36 +441,26 @@ export const updateCart = async (cart: Cart) => {
   };
 };
 
-export const createOrderAction = async (prevState: any, formData: FormData) => {
+export const createOrderAction = async (formData: FormData) => {
   const user = await getAuthUser();
-  let orderId: null | string = null;
-  let cartId: null | string = null;
-  try {
-    const cart = await fetchOrCreateCart();
-    cartId = cart.id;
+  const cart = await fetchOrCreateCart();
 
-    await db.order.deleteMany({
-      where: {
-        clerkId: user.id,
-        isPaid: false,
-      },
-    });
+  await db.order.deleteMany({
+    where: { clerkId: user.id, isPaid: false },
+  });
 
-    const order = await db.order.create({
-      data: {
-        clerkId: user.id,
-        products: cart.numItemsInCart,
-        orderTotal: cart.orderTotal,
-        tax: cart.tax,
-        shipping: cart.shipping,
-        email: user.emailAddresses[0].emailAddress,
-      },
-    });
-    orderId = order.id;
-  } catch (error) {
-    return renderError(error);
-  }
-  redirect(`/checkout?orderId=${orderId}&cartId=${cartId}`);
+  const order = await db.order.create({
+    data: {
+      clerkId: user.id,
+      products: cart.numItemsInCart,
+      orderTotal: cart.orderTotal,
+      tax: cart.tax,
+      shipping: cart.shipping,
+      email: user.emailAddresses[0]?.emailAddress || "no-email@example.com",
+    },
+  });
+
+  redirect(`/checkout?orderId=${order.id}&cartId=${cart.id}`);
 };
 
 export const fetchUserOrders = async () => {

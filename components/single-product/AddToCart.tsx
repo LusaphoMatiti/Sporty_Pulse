@@ -21,12 +21,12 @@ function AddToCart({ productId }: { productId: string }) {
         setAmount={setAmount}
       />
       {userId ? (
-        <FormContainer action={addToCartAction}>
+        <form action={addToCartAction}>
           <input type="hidden" name="productId" value={productId} />
           <input type="hidden" name="amount" value={amount} />
 
           <SubmitButton text="add to cart" className="mt-8" />
-        </FormContainer>
+        </form>
       ) : (
         <ProductSignButton />
       )}

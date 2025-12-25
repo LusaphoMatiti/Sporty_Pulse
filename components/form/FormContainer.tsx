@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useEffect } from "react";
+import { useActionState } from "react";
 import { toast } from "sonner";
 
 export type ActionResult = {
@@ -13,9 +14,10 @@ const initialState: ActionResult = {
   message: "",
 };
 
-type ActionFunction =
-  | ((prevState: ActionResult, formData: FormData) => Promise<ActionResult>)
-  | ((formData: FormData) => Promise<ActionResult>);
+export type ActionFunction = (
+  prevState: ActionResult,
+  formData: FormData
+) => Promise<ActionResult>;
 
 function FormContainer({
   action,
@@ -24,18 +26,12 @@ function FormContainer({
   action: ActionFunction;
   children: React.ReactNode;
 }) {
-  const [state, formAction] = useActionState(
-    action as (
-      prevState: ActionResult,
-      formData: FormData
-    ) => Promise<ActionResult>,
-    initialState
-  );
+  const [state, formAction] = useActionState(action, initialState);
 
   useEffect(() => {
     if (!state.message) return;
     state.success ? toast.success(state.message) : toast.error(state.message);
-  }, [state.success, state.message]);
+  }, [state]);
 
   return <form action={formAction}>{children}</form>;
 }
