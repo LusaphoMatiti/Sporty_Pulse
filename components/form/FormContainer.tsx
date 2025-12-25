@@ -13,10 +13,9 @@ const initialState: ActionResult = {
   message: "",
 };
 
-type ActionFunction = (
-  prevState: ActionResult,
-  formData: FormData
-) => Promise<ActionResult>;
+type ActionFunction =
+  | ((prevState: ActionResult, formData: FormData) => Promise<ActionResult>)
+  | ((formData: FormData) => Promise<ActionResult>);
 
 function FormContainer({
   action,
@@ -25,16 +24,17 @@ function FormContainer({
   action: ActionFunction;
   children: React.ReactNode;
 }) {
-  const [state, formAction] = useActionState(action, initialState);
+  const [state, formAction] = useActionState(
+    action as (
+      prevState: ActionResult,
+      formData: FormData
+    ) => Promise<ActionResult>,
+    initialState
+  );
 
   useEffect(() => {
     if (!state.message) return;
-
-    if (state.success) {
-      toast.success(state.message);
-    } else {
-      toast.error(state.message);
-    }
+    state.success ? toast.success(state.message) : toast.error(state.message);
   }, [state.success, state.message]);
 
   return <form action={formAction}>{children}</form>;
