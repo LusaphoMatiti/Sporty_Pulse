@@ -42,7 +42,7 @@ function SelectProductAmount(
         <SelectTrigger className={cartItem ? "w-[100px]" : "w-[150px]"}>
           <SelectValue placeholder={amount} />
         </SelectTrigger>
-        <SelectContent className=" bg-white">
+        <SelectContent className=" bg-white dark:text-black">
           {Array.from({ length: cartItem ? amount + 10 : 10 }, (_, index) => {
             const selectValue = (index + 1).toString();
             return (

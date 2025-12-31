@@ -7,7 +7,7 @@ async function ProductRating({ productId }: { productId: string }) {
   const countValue = `(${count}) reviews`;
 
   return (
-    <span className="flex bg-gray-100 w-30 gap-1 items-center text-md mt-1 mb-4">
+    <span className="flex bg-gray-100 dark:text-black w-30 gap-1 items-center px-2 text-md mt-1 mb-4">
       <FaStar className="w-3 h-3" />
       {rating} {countValue}
     </span>

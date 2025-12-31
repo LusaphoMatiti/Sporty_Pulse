@@ -1,12 +1,10 @@
-// components/products/ProductsGrid.tsx
-
 "use client";
 
 import { formatCurrency } from "@/utils/format";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import FavoriteToggleButtonClient from "./FavoriteToggleButtonClient"; // ← Use Client version!
+import FavoriteToggleButtonClient from "./FavoriteToggleButtonClient";
 
 type ProductWithFavorite = {
   id: string;
@@ -31,7 +29,7 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
         return (
           <article key={id} className="group relative">
             <Link href={`/products/${id}`}>
-              <Card className="transform group-hover:shadow-xl transition-shadow duration-500">
+              <Card className="transform group-hover:shadow-xl transition-shadow duration-500 dark:border-gray-200">
                 <CardContent className="p-4">
                   <div className="relative h-64 md:h-48 rounded overflow-hidden ">
                     <Image
@@ -44,12 +42,10 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
                   </div>
                   {/* Use Client Toggle Button */}
                   <div className="mt-4 text-center">
-                    <h2 className="text-lg font-semibold text-gray-800 capitalize text-center group-hover:text-gray-900 transition-colors duration-200">
+                    <h2 className="text-lg font-semibold capitalize text-center transition-colors duration-200">
                       {name}
                     </h2>
-                    <p className="text-gray-600 mt-2 font-medium text-sm">
-                      {RandAmount}
-                    </p>
+                    <p className=" mt-2 font-medium text-sm">{RandAmount}</p>
                   </div>
                 </CardContent>
               </Card>

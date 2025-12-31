@@ -6,7 +6,7 @@ function Rating({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-x-1">
       {stars.map((isFilled, i) => {
-        const className = `w-3 h-3 ${isFilled ? " text-blue-500" : "text-gray-400"}`;
+        const className = `w-3 h-3 ${isFilled ? " text-yellow-500" : "text-gray-400"}`;
 
         return isFilled ? (
           <FaStar className={className} key={i} />

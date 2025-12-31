@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { LuLayoutGrid, LuList } from "react-icons/lu";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Divider } from "@heroui/react";
 import { Separator } from "../ui/separator";
 
 type ProductsHeaderProps = {
@@ -31,7 +30,9 @@ export default function ProductsHeader({ totalProducts }: ProductsHeaderProps) {
             size="icon"
             asChild
             className={
-              layout === "grid" ? "bg-blue-400 text-white" : "bg-muted"
+              layout === "grid"
+                ? "bg-primary dark:text-black"
+                : "bg-muted text-black dark:text-white hover:text-white"
             }
           >
             <Link href={`/products?layout=grid${searchTerm}`}>
@@ -43,7 +44,9 @@ export default function ProductsHeader({ totalProducts }: ProductsHeaderProps) {
             size="icon"
             asChild
             className={
-              layout === "list" ? "bg-blue-400 text-white" : "bg-muted"
+              layout === "list"
+                ? "bg-primary dark:text-black"
+                : "bg-muted text-black dark:text-white hover:text-white"
             }
           >
             <Link href={`/products?layout=list${searchTerm}`}>

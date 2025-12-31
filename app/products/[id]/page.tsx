@@ -9,7 +9,6 @@ import ShareButton from "@/components/single-product/ShareButton";
 import SubmitReview from "@/components/reviews/SubmitReview";
 import ProductReviews from "@/components/reviews/ProductReviews";
 import { currentUser } from "@clerk/nextjs/server";
-import { useAccordion } from "@heroui/react";
 
 interface PageProps {
   params: Promise<{ id: string }>;

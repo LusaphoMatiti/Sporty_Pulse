@@ -32,30 +32,30 @@ function LinksDropdown() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="flex gap-4 max-w-[100px] bg-white dark:bg-gray-800 cursor-pointer"
+          className="flex gap-4 max-w-[100px]  cursor-pointer"
         >
-          <LuAlignLeft className="w-6 h-6 text-black dark:text-white" />
+          <LuAlignLeft className="w-6 h-6 " />
           <UserIcon />
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="w-40 bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg border border-gray-200 dark:border-gray-700 rounded-md"
+        className="w-40 shadow-lg rounded-md"
         align="start"
         sideOffset={10}
       >
         <SignedOut>
-          <DropdownMenuItem className="hover:bg-gray-100 dark:hover:bg-gray-700">
+          <DropdownMenuItem>
             <SignInButton mode="modal">
               <button className="w-full text-left">Login</button>
             </SignInButton>
           </DropdownMenuItem>
-          <DropdownMenuItem className="hover:bg-gray-100 dark:hover:bg-gray-700">
+          <DropdownMenuItem>
             <SignUpButton mode="modal">
               <button className="w-full text-left">Register</button>
             </SignUpButton>
           </DropdownMenuItem>
-          <DropdownMenuSeparator className="border-gray-200 dark:border-gray-700" />
+          <DropdownMenuSeparator />
         </SignedOut>
 
         <SignedIn>
@@ -66,14 +66,14 @@ function LinksDropdown() {
               <DropdownMenuItem
                 key={link.href}
                 onClick={() => router.push(link.href)}
-                className="capitalize w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="capitalize w-full cursor-pointer"
               >
                 {link.label}
               </DropdownMenuItem>
             );
           })}
           <DropdownMenuSeparator className="border-gray-200 dark:border-gray-700" />
-          <DropdownMenuItem className="hover:bg-gray-100 dark:hover:bg-gray-700">
+          <DropdownMenuItem>
             <SignOutLink />
           </DropdownMenuItem>
         </SignedIn>

@@ -98,16 +98,19 @@ export const CardSubmitButton = ({
       type="submit"
       size="icon"
       variant="outline"
-      className={cn("p-2 cursor-pointer bg-white hover:bg-gray-400", className)}
+      className={cn(
+        "p-2 cursor-pointer bg-white hover:bg-gray-400 dark:border-gray-200",
+        className
+      )}
       disabled={pending}
       onClick={onClick}
     >
       {pending ? (
         <ReloadIcon className="animate-spin" />
       ) : isFavorite ? (
-        <FaHeart className="text-black" />
+        <FaHeart className="dark:text-red-500 " />
       ) : (
-        <FaRegHeart />
+        <FaRegHeart className="dark:text-black" />
       )}
     </Button>
   );

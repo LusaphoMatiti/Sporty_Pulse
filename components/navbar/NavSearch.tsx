@@ -32,7 +32,7 @@ const NavSearch = () => {
     <Input
       type="search"
       placeholder="search product..."
-      className="max-w-xs bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
+      className="max-w-xs dark:bg-muted"
       onChange={(e) => {
         setSearch(e.target.value);
         handleSearch(e.target.value);
