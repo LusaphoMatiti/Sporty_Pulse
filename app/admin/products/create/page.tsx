@@ -8,6 +8,7 @@ import ImageInput from "@/components/form/ImageInput";
 import TextAreaInput from "@/components/form/TextAreaInput";
 import CheckboxInput from "@/components/form/CheckboxInput";
 import { SubmitButton } from "@/components/form/Buttons";
+import FormSelect from "@/components/form/FormSelect";
 
 function CreateProductPage() {
   const name = faker.commerce.productName();
@@ -26,6 +27,27 @@ function CreateProductPage() {
               label="product name"
               defaultValue={name}
             />
+            <FormSelect
+              name="category"
+              label="Category"
+              options={[
+                { value: "fitness", label: "Fitness" },
+                { value: "recovery", label: "Recovery" },
+              ]}
+            />
+
+            <FormSelect
+              name="muscle"
+              label="Target muscle"
+              options={[
+                { value: "full-body", label: "Full Body" },
+                { value: "upper-body", label: "Upper Body" },
+                { value: "lower-body", label: "Lower Body" },
+                { value: "core", label: "Core" },
+                { value: "recovery", label: "Recovery" },
+              ]}
+            />
+
             <FormInput
               type="text"
               name="company"

@@ -12,6 +12,8 @@ model Products {
   id          String   @id @default(cuid())
   name        String
   company     String
+  category    String?
+  muscle      String?
   description String
   featured    Boolean
   image       String

@@ -58,23 +58,35 @@ export const fetchSingleProduct = async (productId: string) => {
 
 export const createProduction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
+
   try {
-    const rawData = Object.fromEntries(formData);
+    const rawData = Object.fromEntries(formData.entries());
+
     const file = formData.get("image") as File;
 
     const validatedFields = validateWithZodSchema(productSchema, rawData);
-    const validatedFile = validateWithZodSchema(imageSchema, { image: file });
-    if (!validatedFields.success)
+    if (!validatedFields.success) {
+      console.error("ZOD FIELD ERROR:", validatedFields.message, rawData);
       return { success: false, message: validatedFields.message };
-    if (!validatedFile.success)
+    }
+
+    const validatedFile = validateWithZodSchema(imageSchema, { image: file });
+    if (!validatedFile.success) {
       return { success: false, message: validatedFile.message };
+    }
 
     const fullPath = await uploadImage(validatedFile.data.image);
+
     await db.products.create({
-      data: { ...validatedFields.data, image: fullPath, clerkId: user.id },
+      data: {
+        ...validatedFields.data,
+        image: fullPath,
+        clerkId: user.id,
+      },
     });
 
-    return { success: true, message: "Product created successfully" };
+    revalidatePath("/admin/products");
+    redirect("/admin/products");
   } catch (error) {
     if (
       error instanceof Error &&
@@ -82,9 +94,10 @@ export const createProduction = async (prevState: any, formData: FormData) => {
     ) {
       return { success: false, message: "File size must be less than 1 MB" };
     }
+
     return {
       success: false,
-      message: error instanceof Error ? error.message : "An error occurred",
+      message: error instanceof Error ? error.message : "Something went wrong",
     };
   }
 };
@@ -323,6 +336,9 @@ export const fetchOrCreateCart = async () => {
 };
 
 export const fetchCartItems = async () => {
+  const user = await currentUser().catch(() => null);
+  if (!user) return [];
+
   const cart = await fetchOrCreateCart();
   return db.cartItems.findMany({
     where: { cartId: cart.id },
