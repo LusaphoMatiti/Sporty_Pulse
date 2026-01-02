@@ -1,26 +1,20 @@
 import Container from "../global/Container";
-import NavbarClient from "./NavbarClient";
-import Logo from "./Logo";
-import NavSearch from "./NavSearch";
-import { Suspense } from "react";
 import { fetchCartItems } from "@/utils/cart";
+import NavbarShell from "./NavbarShell";
 
-async function Navbar() {
+export default async function Navbar() {
   const numItemsInCart = await fetchCartItems();
 
   return (
     <nav className="border-b">
-      <Container className="flex flex-col sm:flex-row sm:justify-between sm:items-center flex-wrap py-8 gap-4">
-        <Logo />
-        <Suspense>
-          <NavSearch />
-        </Suspense>
-
-        <div className="flex gap-4 items-center">
-          <NavbarClient numItemsInCart={numItemsInCart} />
+      {/* Top bar */}
+      <Container className="border-b">
+        <div className="py-3 flex justify-center text-xs font-semibold text-gray-600 dark:text-white">
+          <p>Welcome to our store</p>
         </div>
       </Container>
+
+      <NavbarShell numItemsInCart={numItemsInCart} />
     </nav>
   );
 }
-export default Navbar;

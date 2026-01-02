@@ -3,6 +3,13 @@ type NavLink = {
   label: string;
 };
 
+export const cenlinks: NavLink[] = [
+  { href: "/", label: "Home" },
+  { href: "/products", label: "Shop" },
+  { href: "/contacts", label: "Contact" },
+  { href: "/our-story", label: "Our Story" },
+];
+
 export const links: NavLink[] = [
   { href: "/", label: "home" },
   { href: "/about", label: "about" },

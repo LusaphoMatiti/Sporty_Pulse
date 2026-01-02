@@ -16,7 +16,7 @@ export default function RootLayout({
         <body>
           <ClientProviders>
             <Navbar />
-            <ClientShell>{children}</ClientShell>
+            {children}
           </ClientProviders>
         </body>
       </html>

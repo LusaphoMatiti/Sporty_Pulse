@@ -1,3 +1,4 @@
+import Container from "@/components/global/Container";
 import LoadingContainer from "@/components/global/LoadingContainer";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Hero from "@/components/home/Hero";
@@ -8,8 +9,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+
       <Suspense fallback={<LoadingContainer />}>
-        <FeaturedProducts />
+        <Container className="py-20">
+          <FeaturedProducts />
+        </Container>
       </Suspense>
     </>
   );

@@ -6,10 +6,12 @@ import Link from "next/link";
 const Logo = () => {
   return (
     <div>
-      <Link href="/">
-        <h1 className="max-w-2xl font-bold text-3xl tracking-tight">
-          Sporty Pulse
-        </h1>
+      <Link href="/" className="">
+        <img
+          className="w-10 h-10"
+          src="./lemon-squeezer.png"
+          alt="sporty pulse"
+        />
       </Link>
     </div>
   );

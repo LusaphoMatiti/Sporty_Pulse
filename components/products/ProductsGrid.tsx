@@ -29,23 +29,29 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
         return (
           <article key={id} className="group relative">
             <Link href={`/products/${id}`}>
-              <Card className="transform group-hover:shadow-xl transition-shadow duration-500 dark:border-gray-200">
+              <Card className="group overflow-hidden rounded-xl border transition hover:shadow-lg">
                 <CardContent className="p-4">
-                  <div className="relative h-64 md:h-48 rounded overflow-hidden ">
+                  <div className="relative aspect-[4/5] w-full  dark:bg-gray-800 rounded-lg overflow-hidden ">
                     <Image
                       src={image}
                       alt={name}
                       fill
                       sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 30vw"
-                      className="rounded w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                      className=" object-contain 
+          p-4
+          transition-transform 
+          duration-300 
+          group-hover:scale-105"
                     />
                   </div>
                   {/* Use Client Toggle Button */}
                   <div className="mt-4 text-center">
-                    <h2 className="text-lg font-semibold capitalize text-center transition-colors duration-200">
+                    <h2 className="text-sm font-medium capitalize line-clamp-1">
                       {name}
                     </h2>
-                    <p className=" mt-2 font-medium text-sm">{RandAmount}</p>
+                    <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                      {RandAmount}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
