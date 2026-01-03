@@ -21,7 +21,7 @@ export default async function FeaturedProducts() {
   );
 
   return (
-    <section className="pt-8">
+    <section className="pt-8 ">
       <SectionTitle text="featured products" />
       <ProductsGrid products={productsWithFavorite} userId={userId} />
     </section>

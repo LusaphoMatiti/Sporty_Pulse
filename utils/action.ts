@@ -561,3 +561,11 @@ export const updateCartItemAction = async (formData: FormData) => {
 
   revalidatePath("/cart");
 };
+
+// action.ts
+export const fetchProductsByMuscle = async (muscle: string) => {
+  return db.products.findMany({
+    where: { muscle },
+    orderBy: { createdAt: "desc" },
+  });
+};
