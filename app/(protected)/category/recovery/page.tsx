@@ -10,7 +10,7 @@ export default async function Recovery() {
 
   return (
     <section className="pt-8 mt-20">
-      <SectionTitle text="Recovery" />
+      <SectionTitle text="Recovery Tools" />
       <ProductsGrid products={products} userId={null} />
     </section>
   );

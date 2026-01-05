@@ -1,12 +1,21 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "../ui/button";
 import { LuSearch } from "react-icons/lu";
 
-export default function Search() {
+type Props = {
+  onOpen: () => void;
+};
+
+export default function Search({ onOpen }: Props) {
   return (
-    <Button variant="outline" size="icon" className="cursor-pointer">
+    <Button
+      variant="outline"
+      size="icon"
+      className="cursor-pointer"
+      onClick={onOpen}
+      aria-label="Open search"
+    >
       <LuSearch className="h-6 w-6" />
     </Button>
   );

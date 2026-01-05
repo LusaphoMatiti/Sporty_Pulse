@@ -47,7 +47,7 @@ export default async function SingleProductsPage({ params }: PageProps) {
             fill
             sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
             priority
-            className="w-full rounded object-cover"
+            className="w-full rounded object-contain"
           />
         </div>
 

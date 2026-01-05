@@ -10,7 +10,7 @@ const ShopByCategory = () => {
   return (
     <Suspense fallback={<LoadingContainer />}>
       <section className="pt-8 mt-20">
-        <SectionTitle text="Shop By Category" />
+        <SectionTitle text="Training Categories" />
 
         <div className="pt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Fitness */}

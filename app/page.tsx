@@ -5,10 +5,10 @@ import Hero from "@/components/home/Hero";
 
 import { Suspense } from "react";
 import ShopByCategory from "./(protected)/category/page";
-import FullBodyProducts from "./(protected)/category/FullBody";
-import LowerBodyProducts from "./(protected)/category/LowerBody";
-import UpperBodyProducts from "./(protected)/category/UpperBody";
-import CoreProducts from "./(protected)/category/Core";
+import FullBodyProducts from "@/components/categories/Fullbody";
+import LowerBodyProducts from "@/components/categories/Lowerbody";
+import UpperBodyProducts from "@/components/categories/Upperbody";
+import CoreProducts from "@/components/categories/Core";
 
 export default function HomePage() {
   return (

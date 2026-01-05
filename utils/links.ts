@@ -7,13 +7,10 @@ export const cenlinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Shop" },
   { href: "/contacts", label: "Contact" },
-  { href: "/our-story", label: "Our Story" },
+  { href: "/about", label: "Our Story" },
 ];
 
 export const links: NavLink[] = [
-  { href: "/", label: "home" },
-  { href: "/about", label: "about" },
-  { href: "/products", label: "products" },
   { href: "/favorites", label: "favorites" },
   { href: "/reviews", label: "reviews" },
   { href: "/cart", label: "cart" },
