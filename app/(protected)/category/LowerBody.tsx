@@ -10,7 +10,7 @@ export default async function LowerBodyProducts() {
 
   return (
     <section className="pt-8 mt-20">
-      <SectionTitle text="Lower Body Workout" />
+      <SectionTitle text="Lower Body" />
       <ProductsGrid products={products} userId={null} />
     </section>
   );

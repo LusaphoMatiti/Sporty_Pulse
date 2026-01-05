@@ -15,7 +15,7 @@ const ShopByCategory = () => {
         <div className="pt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Fitness */}
           <article className="group relative">
-            <Link href="">
+            <Link href="/category/fitness">
               <Card className="group overflow-hidden rounded-xl border transition hover:shadow-lg">
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/3]  w-full overflow-hidden">
@@ -48,7 +48,7 @@ const ShopByCategory = () => {
 
           {/* Recovery */}
           <article className="group relative">
-            <Link href="">
+            <Link href="/category/recovery">
               <Card className="overflow-hidden rounded-2xl border transition hover:shadow-xl">
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
