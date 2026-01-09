@@ -5,6 +5,7 @@ import ClientShell from "./client-shell";
 import { ClerkProvider } from "@clerk/nextjs";
 import ClientProviders from "./client-providers";
 import Footer from "@/components/footer/Footer";
+import CTA from "@/components/footer/CTA";
 
 export default function RootLayout({
   children,
@@ -18,6 +19,7 @@ export default function RootLayout({
           <ClientProviders>
             <Navbar />
             {children}
+            <CTA />
             <Footer />
           </ClientProviders>
         </body>

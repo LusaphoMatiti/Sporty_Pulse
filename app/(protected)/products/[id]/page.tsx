@@ -9,6 +9,7 @@ import ShareButton from "@/components/single-product/ShareButton";
 import SubmitReview from "@/components/reviews/SubmitReview";
 import ProductReviews from "@/components/reviews/ProductReviews";
 import { currentUser } from "@clerk/nextjs/server";
+import SimilarProducts from "@/components/single-product/SimilarProducts";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -76,6 +77,7 @@ export default async function SingleProductsPage({ params }: PageProps) {
       <ProductReviews productId={id} />
 
       {reviewDoesNotExist && <SubmitReview productId={id} />}
+      <SimilarProducts muscle={product.muscle} currentProductId={product.id} />
     </section>
   );
 }

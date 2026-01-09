@@ -9,15 +9,20 @@ import FullBodyProducts from "@/components/categories/Fullbody";
 import LowerBodyProducts from "@/components/categories/Lowerbody";
 import UpperBodyProducts from "@/components/categories/Upperbody";
 import CoreProducts from "@/components/categories/Core";
+import WorkOut from "@/components/home/WorkOut";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <Container className="py-20">
+        <FeaturedProducts />
+      </Container>
+
+      <WorkOut />
 
       <Suspense fallback={<LoadingContainer />}>
         <Container className="py-20">
-          <FeaturedProducts />
           <ShopByCategory />
           <UpperBodyProducts />
           <LowerBodyProducts />

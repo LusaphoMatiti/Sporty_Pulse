@@ -569,3 +569,22 @@ export const fetchProductsByMuscle = async (muscle: string) => {
     orderBy: { createdAt: "desc" },
   });
 };
+
+export const fetchSimilarProducts = async ({
+  muscle,
+  excludeId,
+  limit = 4,
+}: {
+  muscle: string;
+  excludeId: string;
+  limit?: number;
+}) => {
+  return db.products.findMany({
+    where: {
+      muscle,
+      NOT: { id: excludeId },
+    },
+    take: limit,
+    orderBy: { createdAt: "desc" },
+  });
+};

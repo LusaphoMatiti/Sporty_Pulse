@@ -58,6 +58,7 @@ const ProductsGrid = ({ products, userId, favoriteMap }: ProductsGridProps) => {
             onClick={() => setPage((p) => Math.max(p - 1, 0))}
             disabled={page === 0}
             variant="outline"
+            className="cursor-pointer"
           >
             ← Prev
           </Button>
@@ -66,6 +67,7 @@ const ProductsGrid = ({ products, userId, favoriteMap }: ProductsGridProps) => {
             onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
             disabled={page === totalPages - 1}
             variant="outline"
+            className="cursor-pointer"
           >
             Next →
           </Button>

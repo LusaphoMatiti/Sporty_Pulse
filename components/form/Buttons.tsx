@@ -27,7 +27,7 @@ export function SubmitButton({
     <Button
       type="submit"
       disabled={pending}
-      className={cn("capitalize", className)}
+      className={cn("capitalize cursor-pointer", className)}
       size={size}
     >
       {pending ? (
@@ -60,7 +60,12 @@ export const IconButton = ({ actionType }: { actionType: actionType }) => {
   };
 
   return (
-    <Button type="submit" size="icon" variant="link" className="p-2">
+    <Button
+      type="submit"
+      size="icon"
+      variant="link"
+      className="p-2 cursor-pointer"
+    >
       {pending ? <ReloadIcon className="animate-spin" /> : renderIcon()}
     </Button>
   );
@@ -119,7 +124,7 @@ export const CardSubmitButton = ({
 export const ProductSignButton = () => {
   return (
     <SignInButton mode="modal">
-      <Button type="button" className="mt-8 capitalize">
+      <Button type="button" className="mt-8 capitalize cursor-pointer">
         sign in
       </Button>
     </SignInButton>
