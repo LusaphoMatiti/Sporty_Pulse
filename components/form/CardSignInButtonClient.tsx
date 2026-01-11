@@ -1,6 +1,6 @@
 "use client";
 
-import { CardSignInButton } from "../form/Buttons";
+import { CardSignInButton } from "./Buttons";
 
 export default function CardSignInButtonClient() {
   return <CardSignInButton />;

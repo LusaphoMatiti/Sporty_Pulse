@@ -21,11 +21,11 @@ const Hero = () => {
 
       {/* Content */}
 
-      <div className="relative z-10 h-full max-w-7xl mx-auto p-20 flex flex-col justify-center items-center text-center">
-        <h1 className="max-w-2xl lg:text-5xl font-bold   sm:text-4xl text-white">
+      <div className="relative z-10 w-full max-w-3xl px-6 sm:px-10 lg:px-16 flex flex-col justify-center items-center text-center">
+        <h1 className="max-w-2xl font-bold text-3xl sm:text-4xl lg:text-5xl  text-white">
           Too busy for the gym?
         </h1>
-        <p className="mt-8 max-w-xl text-m text-white">
+        <p className="mt-6 max-w-xl text-sm sm:text-base text-white ">
           Sporty Pulse helps you stay active and recover at home. Turn any
           corner of your space into a personal fitness zone without sacrificing
           time or convience.

@@ -10,26 +10,29 @@ import LowerBodyProducts from "@/components/categories/Lowerbody";
 import UpperBodyProducts from "@/components/categories/Upperbody";
 import CoreProducts from "@/components/categories/Core";
 import WorkOut from "@/components/home/WorkOut";
+import MarketingLayout from "@/components/layouts/MarketingLayout";
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <Container className="py-20">
-        <FeaturedProducts />
-      </Container>
-
-      <WorkOut />
-
-      <Suspense fallback={<LoadingContainer />}>
-        <Container className="py-20">
-          <ShopByCategory />
-          <UpperBodyProducts />
-          <LowerBodyProducts />
-          <FullBodyProducts />
-          <CoreProducts />
+      <MarketingLayout>
+        <Hero />
+        <Container className="py-30 sm:py-10">
+          <FeaturedProducts />
         </Container>
-      </Suspense>
+
+        <WorkOut />
+
+        <Suspense fallback={<LoadingContainer />}>
+          <Container className="py-35 sm:py-10">
+            <ShopByCategory />
+            <UpperBodyProducts />
+            <LowerBodyProducts />
+            <FullBodyProducts />
+            <CoreProducts />
+          </Container>
+        </Suspense>
+      </MarketingLayout>
     </>
   );
 }

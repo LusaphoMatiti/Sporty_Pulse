@@ -1,4 +1,5 @@
 import SectionTitle from "@/components/global/SectionTitle";
+import MarketingLayout from "@/components/layouts/MarketingLayout";
 import ProductsGrid from "@/components/products/ProductsGrid";
 import { fetchUserFavorites } from "@/utils/action";
 import { currentUser } from "@clerk/nextjs/server";
@@ -30,9 +31,13 @@ export default async function FavoritesPage() {
   const uniqueProducts = Array.from(productMap.values());
 
   return (
-    <div>
-      <SectionTitle text="Favorites" />
-      <ProductsGrid userId={userId} products={uniqueProducts} />
-    </div>
+    <>
+      <MarketingLayout>
+        <div>
+          <SectionTitle text="Favorites" />
+          <ProductsGrid userId={userId} products={uniqueProducts} />
+        </div>
+      </MarketingLayout>
+    </>
   );
 }

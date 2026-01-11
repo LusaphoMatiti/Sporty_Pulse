@@ -6,7 +6,6 @@ type NavLink = {
 export const cenlinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Shop" },
-  { href: "/contacts", label: "Contact" },
   { href: "/about", label: "Our Story" },
 ];
 

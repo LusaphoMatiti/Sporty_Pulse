@@ -1,3 +1,5 @@
+import MarketingLayout from "@/components/layouts/MarketingLayout";
+
 function About() {
   return (
     <section className="px-4">

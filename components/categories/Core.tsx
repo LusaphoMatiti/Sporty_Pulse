@@ -9,7 +9,7 @@ export default async function CoreProducts() {
   if (!products.length) return <EmptyList />;
 
   return (
-    <section className="pt-8 mt-10">
+    <section className="pt-8 mt-15">
       <SectionTitle text="Core Equipment" />
       <ProductsGrid products={products} userId={null} />
     </section>

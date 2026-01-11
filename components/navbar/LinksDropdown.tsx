@@ -33,6 +33,7 @@ function LinksDropdown() {
         <Button
           variant="outline"
           className="flex gap-4 max-w-[100px]  cursor-pointer"
+          aria-label="User menu"
         >
           <LuAlignLeft className="w-6 h-6 " />
           <UserIcon />

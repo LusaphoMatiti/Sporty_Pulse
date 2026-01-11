@@ -9,5 +9,5 @@ export default function Container({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <div className={clsx("w-full px-30", className)}>{children}</div>;
+  return <div className={clsx("w-full px-10", className)}>{children}</div>;
 }

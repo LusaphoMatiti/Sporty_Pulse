@@ -1,9 +1,10 @@
 import { SubmitButton } from "../form/Buttons";
+import Container from "../global/Container";
 
 const CTA = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 border-t border-gray-200">
-      <div className="container mx-auto px-4 py-16">
+    <section className="bg-white dark:bg-gray-900 border-t border-gray-200 mt-10">
+      <div className=" mx-auto px-4 py-16">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           {/* Text */}
           <h2 className="max-w-xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">

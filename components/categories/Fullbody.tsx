@@ -10,7 +10,7 @@ export default async function FullBodyProducts() {
   if (!products.length) return <EmptyList />;
 
   return (
-    <section className="pt-8 mt-10">
+    <section className="pt-8 mt-15">
       <SectionTitle text="Full Body Equipment" />
       <ProductsGrid products={products} userId={null} />
     </section>

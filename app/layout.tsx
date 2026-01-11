@@ -1,11 +1,54 @@
 // app/layout.tsx (SERVER)
 import "@/styles/globals.css";
 import Navbar from "@/components/navbar/Navbar";
-import ClientShell from "./client-shell";
 import { ClerkProvider } from "@clerk/nextjs";
 import ClientProviders from "./client-providers";
-import Footer from "@/components/footer/Footer";
-import CTA from "@/components/footer/CTA";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Sporty Pulse | Home Fitness & Recovery Equipment",
+    template: "%s | Sporty Pulse",
+  },
+  description:
+    "Sporty Pulse helps you stay active and recover at home with premium fitness and recovery equipment designed for busy lifestyles.",
+  keywords: [
+    "home fitness equipment",
+    "workout at home",
+    "fitness recovery tools",
+    "massage gun",
+    "Sporty Pulse",
+  ],
+  authors: [{ name: "Sporty Pulse" }],
+  creator: "Sporty Pulse",
+  openGraph: {
+    title: "Sporty Pulse | Home Fitness & Recovery Equipment",
+    description:
+      "Turn any space into your personal fitness zone with Sporty Pulse.",
+    url: "https://sportypulse.co.za",
+    siteName: "Sporty Pulse",
+    images: [
+      {
+        url: "/sportsman.jpg",
+        width: 1200,
+        height: 630,
+        alt: "At-home fitness training",
+      },
+    ],
+    locale: "en_ZA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sporty Pulse",
+    description: "Premium home fitness and recovery equipment for busy people.",
+    images: ["/sportsman.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function RootLayout({
   children,
@@ -15,12 +58,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>
+        <body className="antialiased">
           <ClientProviders>
             <Navbar />
             {children}
-            <CTA />
-            <Footer />
           </ClientProviders>
         </body>
       </html>

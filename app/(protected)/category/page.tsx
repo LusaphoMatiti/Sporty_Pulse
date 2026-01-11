@@ -68,10 +68,8 @@ const ShopByCategory = () => {
 
                     {/* Content */}
 
-                    <div className="relative z-10 h-full max-w-7xl mx-auto p-20 flex flex-col justify-center items-center text-center">
-                      <p className="max-w-2xl lg:text-5xl font-bold   sm:text-4xl text-white">
-                        Recovery
-                      </p>
+                    <div className="relative z-10 h-full flex items-center justify-center">
+                      <p className="text-4xl font-bold text-white">Recovery</p>
                     </div>
                   </div>
                 </CardContent>

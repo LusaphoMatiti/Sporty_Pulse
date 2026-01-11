@@ -29,6 +29,7 @@ type ProductItem = {
   name: string;
   image: string;
   price: number;
+  favoriteId?: string | null;
 };
 
 type ProductsGridProps = {
@@ -37,37 +38,37 @@ type ProductsGridProps = {
   favoriteMap?: Record<string, string | null>;
 };
 
-const ProductsGrid = ({ products, userId, favoriteMap }: ProductsGridProps) => {
+const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
   const [page, setPage] = useState(0);
-
   const isLargeScreen = useIsLargeScreen();
+
   const ITEMS_PER_PAGE = isLargeScreen ? 3 : 1;
 
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
   useEffect(() => {
     setPage(0);
-  }, [ITEMS_PER_PAGE]);
+  }, [products.length]);
 
   return (
-    <div className="pt-12 space-y-6">
+    <div className="pt-12 space-y-8">
       {/* CONTROLS — OUTSIDE GRID */}
       {totalPages > 1 && (
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center  gap-6">
           <Button
+            aria-label="Previous products"
             onClick={() => setPage((p) => Math.max(p - 1, 0))}
             disabled={page === 0}
             variant="outline"
-            className="cursor-pointer"
           >
             ← Prev
           </Button>
 
           <Button
+            aria-label="Next products"
             onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
             disabled={page === totalPages - 1}
             variant="outline"
-            className="cursor-pointer"
           >
             Next →
           </Button>
@@ -78,7 +79,7 @@ const ProductsGrid = ({ products, userId, favoriteMap }: ProductsGridProps) => {
       <div className="overflow-hidden">
         {/* SLIDER TRACK */}
         <div
-          className="grid grid-flow-col auto-cols-[100%] transition-transform duration-700 ease-in-out"
+          className="grid grid-flow-col auto-cols-[100%] transition-transform duration-500 ease-out"
           style={{
             transform: `translateX(-${page * 100}%)`,
           }}
@@ -93,51 +94,61 @@ const ProductsGrid = ({ products, userId, favoriteMap }: ProductsGridProps) => {
             return (
               <div
                 key={slideIndex}
-                className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+                className=" grid
+    gap-6
+    grid-cols-1
+    place-items-center
+    lg:grid-cols-3
+    lg:place-items-start
+"
               >
                 {slideProducts.map((product) => {
-                  const { name, price, image, id } = product;
-                  const RandAmount = formatCurrency(price);
-
-                  const favoriteId = favoriteMap
-                    ? favoriteMap[id] || null
-                    : null;
+                  const { id, name, price, image, favoriteId } = product;
+                  const formattedPrice = formatCurrency(price);
 
                   return (
-                    <article key={id} className="group relative">
+                    <article
+                      key={id}
+                      className="group relative w-full max-w-[360px] "
+                    >
                       <Link href={`/products/${id}`}>
-                        <Card className="group overflow-hidden rounded-xl border transition hover:shadow-lg">
+                        <Card className=" overflow-hidden rounded-xl border transition hover:shadow-lg">
+                          {" "}
                           <CardContent className="p-4">
+                            {" "}
                             <div className="relative aspect-[4/3] w-full dark:bg-gray-800 rounded-lg overflow-hidden">
+                              {" "}
                               <Image
                                 src={image}
                                 alt={name}
                                 fill
-                                sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 30vw"
-                                className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                              />
-                            </div>
-
+                                sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+                                className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
+                              />{" "}
+                            </div>{" "}
                             <div className="mt-4 text-center">
+                              {" "}
                               <h2 className="text-sm font-medium capitalize line-clamp-1">
-                                {name}
-                              </h2>
+                                {" "}
+                                {name}{" "}
+                              </h2>{" "}
                               <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">
-                                {RandAmount}
-                              </p>
-                            </div>
-                          </CardContent>
+                                {" "}
+                                {formattedPrice}{" "}
+                              </p>{" "}
+                            </div>{" "}
+                          </CardContent>{" "}
                         </Card>
                       </Link>
 
-                      {userId && favoriteMap !== undefined && (
+                      {userId && (
                         <div
-                          className="absolute top-7 right-7 z-10"
+                          className="absolute top-6 right-6 z-10"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <FavoriteToggleButtonClient
                             userId={userId}
-                            favoriteId={favoriteId}
+                            favoriteId={favoriteId ?? null}
                             productId={id}
                           />
                         </div>
