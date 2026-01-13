@@ -17,14 +17,14 @@ export default function HomePage() {
     <>
       <MarketingLayout>
         <Hero />
-        <Container className="py-30 sm:py-10">
+        <Container className="py-30 px-10 sm:py-10">
           <FeaturedProducts />
         </Container>
 
         <WorkOut />
 
         <Suspense fallback={<LoadingContainer />}>
-          <Container className="py-35 sm:py-10">
+          <Container className="py-35 px-10 sm:py-10">
             <ShopByCategory />
             <UpperBodyProducts />
             <LowerBodyProducts />

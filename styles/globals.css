@@ -189,3 +189,11 @@
     @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))];
   }
 }
+
+button,
+input,
+select,
+textarea,
+a {
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+}

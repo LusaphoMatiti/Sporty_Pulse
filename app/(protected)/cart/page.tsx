@@ -1,5 +1,6 @@
 import CartItemsList from "@/components/cart/CartItemsList";
 import CartTotals from "@/components/cart/CartTotals";
+import EmptyState from "@/components/global/EmptyState";
 import SectionTitle from "@/components/global/SectionTitle";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import { fetchOrCreateCart, updateCart } from "@/utils/action";
@@ -12,7 +13,12 @@ async function CartPage() {
   const previousCart = await fetchOrCreateCart();
   const cart = await updateCart(previousCart);
   if (cart.numItemsInCart === 0) {
-    return <SectionTitle text="Empty Cart" />;
+    return (
+      <EmptyState
+        title="Empty Cart"
+        description="Go to our shop and add an equipment"
+      />
+    );
   }
 
   return (

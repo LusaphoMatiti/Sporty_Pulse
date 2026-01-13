@@ -59,7 +59,7 @@ async function EditProductPage({ params }: any) {
               defaultChecked={featured}
             />
           </div>
-          <SubmitButton text="update product" className="mt-8" />
+          <SubmitButton text="update product" aria-label="" className="mt-8" />
         </FormContainer>
       </div>
     </section>

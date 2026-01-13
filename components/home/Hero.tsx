@@ -1,11 +1,12 @@
 import { Button } from "@heroui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 const Hero = () => {
   return (
     <section className="relative w-full min-h-[70vh] lg:min-h-[60vh] overflow-hidden flex text-center justify-center">
-      <img
-        src="./sportsman.jpg"
+      <Image
+        src="/sportsman.jpg"
         alt="Training"
         className="absolute inset-0
         w-full
@@ -15,6 +16,10 @@ const Hero = () => {
         lg:object-[50%_60%]
         sm:object-[50%_100%]
         "
+        fill
+        placeholder="blur"
+        blurDataURL="/blur.png"
+        priority
       />
 
       <div className="absolute inset-0 bg-black/45" />

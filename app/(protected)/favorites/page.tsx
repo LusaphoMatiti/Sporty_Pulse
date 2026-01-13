@@ -1,3 +1,4 @@
+import EmptyState from "@/components/global/EmptyState";
 import SectionTitle from "@/components/global/SectionTitle";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import ProductsGrid from "@/components/products/ProductsGrid";
@@ -11,7 +12,12 @@ export default async function FavoritesPage() {
   const favorites = await fetchUserFavorites();
 
   if (favorites.length === 0)
-    return <SectionTitle text="You have no favorites yet." />;
+    return (
+      <EmptyState
+        title="You have no favorites yet."
+        description="Add your favorite equipment and view them here."
+      />
+    );
 
   const productMap = new Map<string, any>();
   for (const fav of favorites) {

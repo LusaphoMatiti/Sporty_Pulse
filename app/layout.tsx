@@ -48,6 +48,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  metadataBase: new URL("https://sporty-pulse.vercel.app/"),
 };
 
 export default function RootLayout({
