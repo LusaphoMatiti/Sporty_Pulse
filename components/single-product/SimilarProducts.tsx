@@ -1,5 +1,5 @@
 import { fetchSimilarProducts } from "@/utils/action";
-import ProductsGrid from "../products/ProductsGrid"; // 👈 Adjust path if needed
+import ProductsGrid from "../products/ProductsGrid";
 import { currentUser } from "@clerk/nextjs/server";
 
 interface Props {
@@ -21,16 +21,13 @@ export default async function SimilarProducts({
 
   if (!products.length) return null;
 
-  // Map Prisma product to ProductItem shape expected by ProductsGrid
   const productItems = products.map((p) => ({
     id: p.id,
     name: p.name,
     image: p.image,
     price: p.price,
-    // company is not used in ProductsGrid, so optional
   }));
 
-  // Get current user for favorites
   const user = await currentUser();
 
   return (
@@ -39,7 +36,7 @@ export default async function SimilarProducts({
       <ProductsGrid
         products={productItems}
         userId={user?.id || null}
-        favoriteMap={undefined} // or fetch favoriteMap if needed
+        favoriteMap={undefined}
       />
     </section>
   );

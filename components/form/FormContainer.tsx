@@ -33,7 +33,11 @@ function FormContainer({
     state.success ? toast.success(state.message) : toast.error(state.message);
   }, [state]);
 
-  return <form action={formAction}>{children}</form>;
+  return (
+    <form action={formAction} aria-label="form">
+      {children}
+    </form>
+  );
 }
 
 export default FormContainer;

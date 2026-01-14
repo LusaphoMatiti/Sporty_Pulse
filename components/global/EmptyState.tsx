@@ -8,9 +8,15 @@ type Props = {
 
 const EmptyState = ({ title, description }: Props) => {
   return (
-    <section className="bg-white dark:bg-gray-900 ">
+    <section
+      className="bg-white dark:bg-gray-900"
+      aria-labelledby="empty-state-title"
+    >
       <div className="container flex items-center min-h-screen px-6 py-12 mx-auto">
-        <div className="flex flex-col items-center max-w-sm mx-auto text-center">
+        <div
+          className="flex flex-col items-center max-w-sm mx-auto text-center"
+          aria-live="polite"
+        >
           <p className="p-3 text-sm font-medium rounded-full ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -19,6 +25,7 @@ const EmptyState = ({ title, description }: Props) => {
               stroke-width="2"
               stroke="currentColor"
               className="w-6 h-6"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -40,6 +47,7 @@ const EmptyState = ({ title, description }: Props) => {
                   strokeWidth="1.5"
                   stroke="currentColor"
                   className="w-5 h-5 rtl:rotate-180"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
