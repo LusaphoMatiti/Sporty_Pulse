@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-[70vh] lg:min-h-[60vh] overflow-hidden flex text-center justify-center">
+    <main className="relative w-full min-h-[70vh] lg:min-h-[60vh] overflow-hidden flex text-center justify-center">
       <Image
         src="/sportsman.jpg"
         alt="Training"
@@ -38,11 +38,12 @@ const Hero = () => {
         <Button
           size="lg"
           className="border border-white p-5 text-sm text-white w-30 mt-10 rounded-lg backdrop-blur-sm hover:bg-white/20 ease-in transition"
+          aria-label="Open shop"
         >
           <Link href="/products">Shop Now</Link>
         </Button>
       </div>
-    </section>
+    </main>
   );
 };
 export default Hero;

@@ -56,7 +56,6 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
       {totalPages > 1 && (
         <div className="flex justify-between items-center  gap-6">
           <Button
-            aria-label="Previous products"
             onClick={() => setPage((p) => Math.max(p - 1, 0))}
             disabled={page === 0}
             variant="outline"
@@ -65,7 +64,6 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
           </Button>
 
           <Button
-            aria-label="Next products"
             onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
             disabled={page === totalPages - 1}
             variant="outline"

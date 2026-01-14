@@ -10,6 +10,7 @@ function CartButton({ numItemsInCart }: { numItemsInCart: number }) {
       variant="outline"
       size="icon"
       className="flex justify-center items-center relative"
+      aria-label="Cart button"
     >
       <Link href="/cart" aria-label={`Cart with ${numItemsInCart} items`}>
         <LuShoppingCart />

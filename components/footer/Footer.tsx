@@ -4,7 +4,10 @@ import Logo from "../navbar/Logo";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-700">
+    <footer
+      className="border-t border-gray-200 dark:border-gray-700"
+      aria-label="Site footer"
+    >
       <div className="container mx-auto px-6 py-10">
         {/* Top section */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-5">

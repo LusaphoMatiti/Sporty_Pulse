@@ -14,25 +14,23 @@ import MarketingLayout from "@/components/layouts/MarketingLayout";
 
 export default function HomePage() {
   return (
-    <>
-      <MarketingLayout>
-        <Hero />
-        <Container className="py-30 px-10 sm:py-10">
-          <FeaturedProducts />
+    <MarketingLayout>
+      <Hero />
+      <Container className="py-30 px-10 sm:py-10">
+        <FeaturedProducts />
+      </Container>
+
+      <WorkOut />
+
+      <Suspense fallback={<LoadingContainer />}>
+        <Container className="py-35 px-10 sm:py-10">
+          <ShopByCategory />
+          <UpperBodyProducts />
+          <LowerBodyProducts />
+          <FullBodyProducts />
+          <CoreProducts />
         </Container>
-
-        <WorkOut />
-
-        <Suspense fallback={<LoadingContainer />}>
-          <Container className="py-35 px-10 sm:py-10">
-            <ShopByCategory />
-            <UpperBodyProducts />
-            <LowerBodyProducts />
-            <FullBodyProducts />
-            <CoreProducts />
-          </Container>
-        </Suspense>
-      </MarketingLayout>
-    </>
+      </Suspense>
+    </MarketingLayout>
   );
 }

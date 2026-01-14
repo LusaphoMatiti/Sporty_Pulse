@@ -34,6 +34,7 @@ export default function NavSearch({ autoFocus }: Props) {
       type="search"
       placeholder="Search training equipment..."
       className="h-12 text-base"
+      aria-label="Search"
       value={search}
       onChange={(e) => {
         setSearch(e.target.value);

@@ -75,7 +75,6 @@ export default function NavbarShell({ numItemsInCart }: Props) {
               </Link>
             ))}
 
-            {/* Optional: stack other buttons here if you want */}
             <div className="flex flex-row sm:justify-center gap-3 sm:gap-6 mt-5 w-full items-center">
               <CartButton numItemsInCart={numItemsInCart} />
               <ModeToggle />

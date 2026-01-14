@@ -80,6 +80,7 @@ export const CardSignInButton = () => {
         variant="outline"
         className="p-2 cursor-pointer bg-white hover:bg-gray-400"
         asChild
+        aria-label="Sign out button"
       >
         <FaRegHeart />
       </Button>
@@ -109,6 +110,7 @@ export const CardSubmitButton = ({
       )}
       disabled={pending}
       onClick={onClick}
+      aria-label="Card Submit button"
     >
       {pending ? (
         <ReloadIcon className="animate-spin" />
@@ -124,7 +126,11 @@ export const CardSubmitButton = ({
 export const ProductSignButton = () => {
   return (
     <SignInButton mode="modal">
-      <Button type="button" className="mt-8 capitalize cursor-pointer">
+      <Button
+        type="button"
+        className="mt-8 capitalize cursor-pointer"
+        aria-label="Sign In button"
+      >
         sign in
       </Button>
     </SignInButton>

@@ -9,7 +9,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside>
+    <aside aria-label="Admin navigation">
       {adminLinks.map((link) => {
         const isActivePage = pathname === link.href;
         const variant = isActivePage ? "active" : "ghost";
@@ -20,7 +20,12 @@ const Sidebar = () => {
             variant={variant}
             key={link.href}
           >
-            <Link href={link.href}>{link.label}</Link>
+            <Link
+              href={link.href}
+              aria-current={isActivePage ? "page" : undefined}
+            >
+              {link.label}
+            </Link>
           </Button>
         );
       })}

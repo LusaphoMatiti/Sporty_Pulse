@@ -4,11 +4,7 @@ import MarketingLayout from "@/components/layouts/MarketingLayout";
 export default function CoreCategoryPage() {
   return (
     <MarketingLayout>
-      <>
-        <section>
-          <Fullbody />
-        </section>
-      </>
+      <Fullbody />
     </MarketingLayout>
   );
 }

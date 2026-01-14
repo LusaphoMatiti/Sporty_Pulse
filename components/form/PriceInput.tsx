@@ -19,6 +19,7 @@ function PriceInput({ defaultValue }: FormInputNumberProps) {
         name={name}
         min={0}
         defaultValue={defaultValue || 100}
+        aria-label="Price input"
       />
     </div>
   );

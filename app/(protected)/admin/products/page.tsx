@@ -80,7 +80,6 @@ async function AdminProductsPage() {
 export default AdminProductsPage;
 
 function DeleteProduct({ productId }: { productId: string }) {
-  const deleteProduct = deleteProductAction.bind(null, { productId });
   return (
     <FormContainer action={deleteProductAction}>
       <input type="hidden" name="productId" value={productId} />

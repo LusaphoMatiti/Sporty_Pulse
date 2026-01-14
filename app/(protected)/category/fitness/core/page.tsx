@@ -5,11 +5,7 @@ import MarketingLayout from "@/components/layouts/MarketingLayout";
 export default function CoreCategoryPage() {
   return (
     <MarketingLayout>
-      <>
-        <section>
-          <Core />
-        </section>
-      </>
+      <Core />
     </MarketingLayout>
   );
 }

@@ -10,13 +10,11 @@ export default async function Recovery() {
   if (!products.length) return <EmptyList />;
 
   return (
-    <>
-      <MarketingLayout>
-        <section className="pt-8 mt-20">
-          <SectionTitle text="Recovery Tools" />
-          <ProductsGrid products={products} userId={null} />
-        </section>
-      </MarketingLayout>
-    </>
+    <MarketingLayout>
+      <section className="pt-8 mt-20">
+        <SectionTitle text="Recovery Tools" />
+        <ProductsGrid products={products} userId={null} />
+      </section>
+    </MarketingLayout>
   );
 }

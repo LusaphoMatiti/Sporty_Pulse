@@ -33,6 +33,7 @@ function ImageInputContainer(props: ImageInputContainerProps) {
         variant="outline"
         size="sm"
         onClick={() => setUpdateFormVisible((prev) => !prev)}
+        aria-label="Image input button"
       >
         {text}
       </Button>
