@@ -11,14 +11,21 @@ import UpperBodyProducts from "@/components/categories/Upperbody";
 import CoreProducts from "@/components/categories/Core";
 import WorkOut from "@/components/home/WorkOut";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
+import BehavioralSections from "@/components/home/BehavioralSections";
+import { getServerUserId } from "@/utils/server/auth";
 
-export default function HomePage() {
+// app/page.tsx (NO CHANGE)
+export default async function HomePage() {
+  const userId = await getServerUserId();
+
   return (
     <MarketingLayout>
       <Hero />
       <Container className="py-30 px-10 sm:py-10">
         <FeaturedProducts />
       </Container>
+
+      <BehavioralSections userId={userId} />
 
       <WorkOut />
 
