@@ -2,7 +2,12 @@
 
 import { useRef, useEffect } from "react";
 
-export default function WorkOut() {
+type Prop = {
+  video: string;
+  quote: string;
+};
+
+export default function WorkOut({ video, quote }: Prop) {
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     if (!videoRef.current) return;
@@ -11,11 +16,22 @@ export default function WorkOut() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    videoRef.current.playbackRate = prefersReducedMotion ? 1 : 2;
+    videoRef.current.playbackRate = prefersReducedMotion ? 1 : 1.25;
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-black">
+    <section
+      className="
+        relative
+        left-1/2
+        right-1/2
+        -ml-[50vw]
+        -mr-[50vw]
+        w-screen
+        overflow-hidden
+        bg-black
+      "
+    >
       <div className="relative h-[420px] w-full overflow-hidden">
         <video
           ref={videoRef}
@@ -27,13 +43,26 @@ export default function WorkOut() {
           poster="/homeworkout-poster.jpg"
           className="absolute left-1/2 top-1/2 h-[140%] w-[140%] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
         >
-          <source
-            src="https://res.cloudinary.com/dsoxsrjn2/video/upload/f_auto,q_auto,w_1920/homeworkout_2_mwfnpw.mp4"
-            type="video/mp4"
-          />
+          <source src={video} type="video/mp4" />
         </video>
-
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/45">
+          {/* Content */}
+          <div
+            className="
+      absolute inset-0
+      z-10
+      flex flex-col
+      items-center
+      justify-center
+      text-center
+      px-6 sm:px-10 lg:px-16
+    "
+          >
+            <h3 className="max-w-2xl font-bold text-3xl sm:text-4xl lg:text-5xl text-white">
+              {quote}
+            </h3>
+          </div>
+        </div>
       </div>
     </section>
   );

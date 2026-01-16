@@ -1,5 +1,6 @@
 import LoadingContainer from "@/components/global/LoadingContainer";
 import SectionTitle from "@/components/global/SectionTitle";
+import WorkOut from "@/components/home/WorkOut";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
