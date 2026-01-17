@@ -39,7 +39,7 @@ export default async function SingleProductsPage({ params }: PageProps) {
 
   return (
     <section>
-      <BreadCrumbs name={name} />
+      <BreadCrumbs currentLabel={name} />
       <MarketingLayout>
         <TrackView productId={id} />
         <div className="mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16">

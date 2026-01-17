@@ -2,6 +2,7 @@ import EmptyState from "@/components/global/EmptyState";
 import SectionTitle from "@/components/global/SectionTitle";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import ProductsGrid from "@/components/products/ProductsGrid";
+import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 import { fetchUserFavorites } from "@/utils/action";
 import { currentUser } from "@clerk/nextjs/server";
 
@@ -39,6 +40,7 @@ export default async function FavoritesPage() {
   return (
     <>
       <MarketingLayout>
+        <BreadCrumbs />
         <div>
           <SectionTitle text="Favorites" />
           <ProductsGrid userId={userId} products={uniqueProducts} />

@@ -5,6 +5,7 @@ import ProductsGrid from "@/components/products/ProductsGrid";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import WorkOut from "@/components/home/WorkOut";
 import PicQuote from "@/components/quote/PicQuote";
+import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 
 export default async function Recovery() {
   const products = await fetchProductsByMuscle("recovery");
@@ -13,6 +14,7 @@ export default async function Recovery() {
 
   return (
     <MarketingLayout>
+      <BreadCrumbs />
       <WorkOut
         video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1768595925/4920812-hd_1920_1080_25fps_nqh29o.mp4"
         quote="Your next performance starts with recovery."

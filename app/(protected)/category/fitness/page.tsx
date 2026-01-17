@@ -2,6 +2,7 @@ import LoadingContainer from "@/components/global/LoadingContainer";
 import SectionTitle from "@/components/global/SectionTitle";
 import WorkOut from "@/components/home/WorkOut";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
+import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +11,7 @@ import { Suspense } from "react";
 export default function Fitness() {
   return (
     <MarketingLayout>
+      <BreadCrumbs />
       <Suspense fallback={<LoadingContainer />}>
         <section className="pt-8 mt-0">
           <SectionTitle text="Targeted Training" />

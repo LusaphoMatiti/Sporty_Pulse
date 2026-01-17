@@ -4,6 +4,7 @@ import SectionTitle from "@/components/global/SectionTitle";
 import FormContainer from "@/components/form/FormContainer";
 import { IconButton } from "@/components/form/Buttons";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
+import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 
 export default async function ReviewsPage() {
   const reviews = await fetchProductReviewsByUser();
@@ -14,6 +15,7 @@ export default async function ReviewsPage() {
 
   return (
     <>
+      <BreadCrumbs />
       <MarketingLayout>
         <SectionTitle text="Your Reviews" />
         <section className="grid md:grid-cols-2 gap-8 mt-4">

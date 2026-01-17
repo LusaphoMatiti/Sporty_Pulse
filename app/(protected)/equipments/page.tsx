@@ -2,6 +2,7 @@ import Container from "@/components/global/Container";
 import LoadingContainer from "@/components/global/LoadingContainer";
 import SectionTitle from "@/components/global/SectionTitle";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
+import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,11 +11,12 @@ import { Suspense } from "react";
 export default async function ProductsPage() {
   return (
     <MarketingLayout>
+      <BreadCrumbs />
       <Suspense fallback={<LoadingContainer />}>
         <Container className="py-35 sm:py-10">
           <div>
             <section className="pt-8 mt-10">
-              <SectionTitle text="Training & Recovery Equipment" />
+              <SectionTitle text="Training & Recovery Equipments" />
 
               <div className="pt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
                 {/* Core */}
