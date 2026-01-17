@@ -86,7 +86,7 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
           {Array.from({ length: totalPages }).map((_, slideIndex) => {
             const slideProducts = products.slice(
               slideIndex * ITEMS_PER_PAGE,
-              slideIndex * ITEMS_PER_PAGE + ITEMS_PER_PAGE
+              slideIndex * ITEMS_PER_PAGE + ITEMS_PER_PAGE,
             );
 
             return (
@@ -109,7 +109,7 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
                       key={id}
                       className="group relative w-full max-w-[360px] "
                     >
-                      <Link href={`/products/${id}`}>
+                      <Link href={`/equipments/${id}`}>
                         <Card className=" overflow-hidden rounded-xl border transition hover:shadow-lg">
                           {" "}
                           <CardContent className="p-4">
