@@ -5,14 +5,15 @@ import PicQuote from "@/components/quote/PicQuote";
 import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     minPrice?: string;
     maxPrice?: string;
     sort?: string;
-  };
+  }>;
 }
 
-export default function CoreCategoryPage({ searchParams }: PageProps) {
+export default async function CoreCategoryPage({ searchParams }: PageProps) {
+  const resolvedSearchParams = await searchParams;
   return (
     <>
       <BreadCrumbs />
@@ -21,7 +22,7 @@ export default function CoreCategoryPage({ searchParams }: PageProps) {
         quote="Leg day doesn’t get skipped at home."
       />
       <MarketingLayout>
-        <LowerBody searchParams={searchParams} />
+        <LowerBody searchParams={resolvedSearchParams} />
         <PicQuote
           image="/lowerbody.jpg"
           quote="Strong legs carry everything else."
