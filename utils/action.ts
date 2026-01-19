@@ -12,7 +12,7 @@ import {
 import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { Cart } from "@prisma/client";
-import { success } from "zod";
+import { number, success } from "zod";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -116,7 +116,7 @@ export const fetchAdminProductDetails = async (productId: string) => {
 
 export const deleteProductAction = async (
   prevState: any,
-  formData: FormData
+  formData: FormData,
 ) => {
   await getAdminUser();
   try {
@@ -141,7 +141,7 @@ export const deleteProductAction = async (
 
 export const updateProductAction = async (
   prevState: any,
-  formData: FormData
+  formData: FormData,
 ) => {
   try {
     const id = formData.get("id") as string;
@@ -168,7 +168,7 @@ export const updateProductAction = async (
 
 export const updateProductImageAction = async (
   prevState: any,
-  formData: FormData
+  formData: FormData,
 ) => {
   await getAuthUser();
   try {
@@ -258,7 +258,7 @@ export const fetchUserFavorites = async () => {
 
 export const createReviewAction = async (
   prevState: any,
-  formData: FormData
+  formData: FormData,
 ) => {
   const user = await getAuthUser();
   try {
@@ -586,5 +586,52 @@ export const fetchSimilarProducts = async ({
     },
     take: limit,
     orderBy: { createdAt: "desc" },
+  });
+};
+
+// filtering products
+
+type Props = {
+  search?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  category?: string;
+  sort?: string;
+};
+
+export const fetchFilteredProducts = async ({
+  search = "",
+  minPrice,
+  maxPrice,
+  category,
+  sort,
+}: Props) => {
+  return db.products.findMany({
+    where: {
+      AND: [
+        search
+          ? {
+              OR: [
+                { name: { contains: search, mode: "insensitive" } },
+                { company: { contains: search, mode: "insensitive" } },
+              ],
+            }
+          : {},
+        minPrice ? { price: { gte: minPrice } } : {},
+        maxPrice ? { price: { lte: maxPrice } } : {},
+        category ? { muscle: category } : {},
+      ],
+    },
+
+    orderBy:
+      sort === "price-asc"
+        ? { price: "asc" }
+        : sort === "price-desc"
+          ? { price: "desc" }
+          : sort === "newest"
+            ? { createdAt: "desc" }
+            : sort === "popular"
+              ? { reviews: { _count: "desc" } }
+              : { createdAt: "desc" },
   });
 };

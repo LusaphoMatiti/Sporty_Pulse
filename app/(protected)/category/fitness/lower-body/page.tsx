@@ -1,11 +1,18 @@
-// app/category/fitness/core/page.tsx
 import LowerBody from "@/components/categories/Lowerbody";
 import WorkOut from "@/components/home/WorkOut";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import PicQuote from "@/components/quote/PicQuote";
 import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 
-export default function CoreCategoryPage() {
+interface PageProps {
+  searchParams: {
+    minPrice?: string;
+    maxPrice?: string;
+    sort?: string;
+  };
+}
+
+export default function CoreCategoryPage({ searchParams }: PageProps) {
   return (
     <>
       <BreadCrumbs />
@@ -14,7 +21,7 @@ export default function CoreCategoryPage() {
         quote="Leg day doesn’t get skipped at home."
       />
       <MarketingLayout>
-        <LowerBody />
+        <LowerBody searchParams={searchParams} />
         <PicQuote
           image="/lowerbody.jpg"
           quote="Strong legs carry everything else."

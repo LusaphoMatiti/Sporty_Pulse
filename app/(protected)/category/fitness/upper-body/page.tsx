@@ -4,7 +4,15 @@ import MarketingLayout from "@/components/layouts/MarketingLayout";
 import PicQuote from "@/components/quote/PicQuote";
 import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 
-export default function CoreCategoryPage() {
+interface PageProps {
+  searchParams: {
+    minPrice?: string;
+    maxPrice?: string;
+    sort?: string;
+  };
+}
+
+export default function CoreCategoryPage({ searchParams }: PageProps) {
   return (
     <>
       <BreadCrumbs />
@@ -13,7 +21,7 @@ export default function CoreCategoryPage() {
         quote="Strength shows when there’s nowhere to hide."
       />
       <MarketingLayout>
-        <UpperBody />
+        <UpperBody searchParams={searchParams} />
         <PicQuote image="/upperbody.jpg" quote="Push. Pull. Earn it." />
       </MarketingLayout>
     </>
