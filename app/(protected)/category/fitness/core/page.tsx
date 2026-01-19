@@ -5,14 +5,15 @@ import PicQuote from "@/components/quote/PicQuote";
 import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     minPrice?: string;
     maxPrice?: string;
     sort?: string;
-  };
+  }>;
 }
 
-export default function CoreCategoryPage({ searchParams }: PageProps) {
+export default async function CoreCategoryPage({ searchParams }: PageProps) {
+  const resolvedSearchParams = await searchParams;
   return (
     <>
       <BreadCrumbs />
@@ -22,7 +23,7 @@ export default function CoreCategoryPage({ searchParams }: PageProps) {
       />
 
       <MarketingLayout>
-        <Core searchParams={searchParams} />
+        <Core searchParams={resolvedSearchParams} />
 
         <PicQuote
           image="/core.jpg"

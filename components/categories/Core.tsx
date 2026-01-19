@@ -14,11 +14,17 @@ interface PageProps {
 }
 
 export default async function CoreProducts({ searchParams }: PageProps) {
+  const resolvedSearchParams = await searchParams;
+
   const products = await fetchFilteredProducts({
     category: "core",
-    minPrice: searchParams.minPrice ? Number(searchParams.minPrice) : undefined,
-    maxPrice: searchParams.maxPrice ? Number(searchParams.maxPrice) : undefined,
-    sort: searchParams.sort,
+    minPrice: resolvedSearchParams.minPrice
+      ? Number(resolvedSearchParams.minPrice)
+      : undefined,
+    maxPrice: resolvedSearchParams.maxPrice
+      ? Number(resolvedSearchParams.maxPrice)
+      : undefined,
+    sort: resolvedSearchParams.sort,
   });
 
   if (!products.length) return <EmptyList />;
