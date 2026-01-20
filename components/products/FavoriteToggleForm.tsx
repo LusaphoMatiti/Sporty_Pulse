@@ -3,10 +3,9 @@
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "sonner";
-import { FavoriteState } from "@/utils/server/favorite";
 import { CardSubmitButton } from "../form/Buttons";
-import FormContainer from "../form/FormContainer";
 import { toggleFavorite } from "@/utils/server/favorite";
+import { FavoriteState } from "@/utils/app-error";
 
 type Props = {
   productId: string;
@@ -17,6 +16,7 @@ type Props = {
 const initialState: FavoriteState = {
   success: false,
   message: "",
+  code: undefined,
   favoriteId: null,
 };
 
@@ -25,20 +25,25 @@ export default function FavoriteToggleForm({
   favoriteId,
   onToggle,
 }: Props) {
-  const [state, formAction] = useFormState(toggleFavorite, {
-    ...initialState,
-    favoriteId,
-  });
+  const [state, formAction] = useFormState<FavoriteState, FormData>(
+    toggleFavorite,
+    {
+      ...initialState,
+      favoriteId,
+    },
+  );
 
   useEffect(() => {
     if (!state.message) return;
 
-    if (state.success) {
-      toast.success(state.message);
-      onToggle?.(state.favoriteId);
-    } else {
-      toast.error(state.message);
+    if (!state.success && state.code === "UNAUTHORIZED") {
+      toast.error("Sign in to save favorites");
+      return;
     }
+
+    state.success ? toast.success(state.message) : toast.error(state.message);
+
+    if (state.success) onToggle?.(state.favoriteId);
   }, [state, onToggle]);
 
   return (

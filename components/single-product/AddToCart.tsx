@@ -1,9 +1,7 @@
 "use client";
 
-import { Button } from "../ui/button";
 import SelectProductAmount from "./SelectProductAmount";
 import { Mode } from "./SelectProductAmount";
-import FormContainer from "../form/FormContainer";
 import { SubmitButton } from "../form/Buttons";
 import { addToCartAction } from "@/utils/action";
 import { useAuth } from "@clerk/nextjs";

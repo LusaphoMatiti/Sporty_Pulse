@@ -9,8 +9,13 @@ import { Button } from "@/components/ui/button";
 import { createReviewAction } from "@/utils/action";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { ActionResult } from "@/utils/app-error";
 
-const SubmitReview = ({ productId }: { productId: string }) => {
+interface SubmitReviewProps {
+  productId: string;
+}
+
+const SubmitReview = ({ productId }: SubmitReviewProps) => {
   const [isReviewFormVisible, setIsReviewFormVisible] = useState(false);
   const { user } = useUser();
   const router = useRouter();
@@ -22,12 +27,12 @@ const SubmitReview = ({ productId }: { productId: string }) => {
         className="capitalize"
         onClick={() => setIsReviewFormVisible((prev) => !prev)}
       >
-        leave review
+        Leave Review
       </Button>
       {isReviewFormVisible && (
         <Card className="p-8 mt-8">
           <FormContainer
-            action={async (prevState, formData) => {
+            action={async (prevState: ActionResult, formData: FormData) => {
               const result = await createReviewAction(prevState, formData);
 
               if (result.success) {

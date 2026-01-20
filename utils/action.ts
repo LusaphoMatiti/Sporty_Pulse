@@ -12,11 +12,14 @@ import {
 import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { Cart } from "@prisma/client";
-import { number, success } from "zod";
+import { ActionResult, AppError } from "./app-error";
+import { FavoriteState } from "./app-error";
 
 const getAuthUser = async () => {
   const user = await currentUser();
-  if (!user) redirect("/");
+  if (!user) {
+    throw new AppError("UNAUTHORIZED", "You must be logged in");
+  }
   return user;
 };
 
@@ -212,9 +215,20 @@ export const fetchFavoriteId = async ({ productId }: { productId: string }) => {
   return favorite?.id || null;
 };
 
-export const toggleFavorite = async (prevState: any, formData: FormData) => {
+export const toggleFavorite = async (
+  prevState: FavoriteState,
+  formData: FormData,
+): Promise<FavoriteState> => {
   const { userId } = await auth();
-  if (!userId) return { success: false, message: "You must be logged in." };
+
+  if (!userId) {
+    return {
+      success: false,
+      code: "UNAUTHORIZED",
+      message: "You must be logged in",
+      favoriteId: prevState.favoriteId,
+    };
+  }
 
   const productId = String(formData.get("productId"));
   const favoriteIdRaw = formData.get("favoriteId");
@@ -223,26 +237,30 @@ export const toggleFavorite = async (prevState: any, formData: FormData) => {
 
   try {
     if (favoriteId) {
-      await db.favorite.delete({ where: { id: favoriteId } }).catch(() => null);
-      revalidatePath("/favorites");
+      await db.favorite.delete({ where: { id: favoriteId } });
+
       return {
         success: true,
         favoriteId: null,
         message: "Removed from favorites",
       };
-    } else {
-      const favorite = await db.favorite.create({
-        data: { productId, clerkId: userId },
-      });
-      revalidatePath("/favorites");
-      return {
-        success: true,
-        favoriteId: favorite.id,
-        message: "Added to favorites",
-      };
     }
+    const favorite = await db.favorite.create({
+      data: { productId, clerkId: userId },
+    });
+
+    return {
+      success: true,
+      message: "Added to favorites",
+      favoriteId: favorite.id,
+    };
   } catch {
-    return { success: false, message: "Something went wrong." };
+    return {
+      success: false,
+      code: "UNKNOWN",
+      message: "Something went wrong.",
+      favoriteId: prevState.favoriteId,
+    };
   }
 };
 

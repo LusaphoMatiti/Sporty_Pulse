@@ -19,6 +19,8 @@ type ImageInputContainerProps = {
 function ImageInputContainer(props: ImageInputContainerProps) {
   const { image, name, action, text } = props;
   const [isUpdateFormVisible, setUpdateFormVisible] = useState(false);
+  const [preview, setPreview] = useState<string | null>(null);
+
   return (
     <div className="mb-8">
       <Image
@@ -41,7 +43,10 @@ function ImageInputContainer(props: ImageInputContainerProps) {
         <div className="max-w-md mt-4">
           <FormContainer action={action}>
             {props.children}
-            <ImageInput />
+            <ImageInput
+              onChange={(file) => setPreview(URL.createObjectURL(file))}
+            />
+
             <SubmitButton size="sm" text={text} />
           </FormContainer>
         </div>

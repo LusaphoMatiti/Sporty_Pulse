@@ -32,12 +32,11 @@ function validateImageFile() {
 
 export function validateWithZodSchema<T>(
   schema: ZodSchema<T>,
-  data: unknown
+  data: unknown,
 ): { success: true; data: T } | { success: false; message: string } {
   const result = schema.safeParse(data);
 
   if (!result.success) {
-    // Pick the first error only (simpler and cleaner for users)
     const firstMessage =
       result.error.issues[0]?.message || "Something went wrong.";
     return { success: false, message: firstMessage };

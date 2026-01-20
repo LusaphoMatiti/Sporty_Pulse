@@ -1,15 +1,28 @@
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import { useRef } from "react";
 
-function ImageInput() {
-  const name = "image";
+type ImageInputProps = {
+  onChange?: (file: File) => void;
+};
+
+function ImageInput({ onChange }: ImageInputProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="mb-2">
-      <Label htmlFor={name} className="capitalize">
-        Image
-      </Label>
-      <Input id={name} name={name} type="file" required accept="image/*" />
+      <Label className="capitalize">Image</Label>
+      <Input
+        type="file"
+        accept="image/*"
+        ref={inputRef}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file && onChange) {
+            onChange(file);
+          }
+        }}
+      />
     </div>
   );
 }
