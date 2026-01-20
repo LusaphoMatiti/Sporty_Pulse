@@ -1,30 +1,33 @@
+"use client";
+
+import { useRef } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { useRef } from "react";
 
 type ImageInputProps = {
   onChange?: (file: File) => void;
 };
 
-function ImageInput({ onChange }: ImageInputProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+export default function ImageInput({ onChange }: ImageInputProps) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && onChange) {
+      onChange(file);
+    }
+  };
 
   return (
-    <div className="mb-2">
-      <Label className="capitalize">Image</Label>
+    <div className="space-y-2">
+      <Label htmlFor="image">Product Image</Label>
       <Input
+        ref={inputRef}
+        id="image"
         type="file"
         accept="image/*"
-        ref={inputRef}
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file && onChange) {
-            onChange(file);
-          }
-        }}
+        onChange={handleChange}
       />
     </div>
   );
 }
-
-export default ImageInput;
