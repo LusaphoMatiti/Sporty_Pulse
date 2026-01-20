@@ -40,7 +40,7 @@ const Hero = () => {
           className="border border-white p-5 text-sm text-white w-30 mt-10 rounded-lg backdrop-blur-sm hover:bg-white/20 ease-in transition"
           aria-label="Open shop"
         >
-          <Link href="/products">Shop Now</Link>
+          <Link href="/equipments">Shop Now</Link>
         </Button>
       </div>
     </main>
