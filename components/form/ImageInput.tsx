@@ -25,6 +25,7 @@ export default function ImageInput({ onChange }: ImageInputProps) {
         ref={inputRef}
         id="image"
         type="file"
+        name="image"
         accept="image/*"
         onChange={handleChange}
       />

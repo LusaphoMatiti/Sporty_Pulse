@@ -22,7 +22,6 @@ export default async function SingleProductsPage({ params }: PageProps) {
   const product = await fetchSingleProduct(id);
 
   if (!product) {
-    // Optional but safer: handle missing product
     return (
       <section className="p-8 text-center">
         <h1 className="text-2xl font-semibold">Product not found</h1>

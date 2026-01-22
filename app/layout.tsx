@@ -4,6 +4,8 @@ import Navbar from "@/components/navbar/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import ClientProviders from "./client-providers";
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
+import AuthToast from "@/components/auth/AuthToast";
 
 export const metadata: Metadata = {
   title: {
@@ -62,7 +64,9 @@ export default function RootLayout({
         <body className="antialiased">
           <ClientProviders>
             <Navbar />
+            <AuthToast />
             {children}
+            <Toaster richColors position="bottom-right" />
           </ClientProviders>
         </body>
       </html>

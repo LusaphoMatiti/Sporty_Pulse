@@ -66,10 +66,12 @@ export const createProduction = async (prevState: any, formData: FormData) => {
     const rawData = Object.fromEntries(formData.entries());
 
     const file = formData.get("image") as File;
+    if (!(file instanceof File)) {
+      return { success: false, message: "Image is required" };
+    }
 
     const validatedFields = validateWithZodSchema(productSchema, rawData);
     if (!validatedFields.success) {
-      console.error("ZOD FIELD ERROR:", validatedFields.message, rawData);
       return { success: false, message: validatedFields.message };
     }
 
@@ -89,7 +91,7 @@ export const createProduction = async (prevState: any, formData: FormData) => {
     });
 
     revalidatePath("/admin/products");
-    redirect("/admin/products");
+    return { success: true, message: "Product created successfully" };
   } catch (error) {
     if (
       error instanceof Error &&
@@ -364,36 +366,55 @@ export const fetchCartItems = async () => {
   });
 };
 
-export const addToCartAction = async (formData: FormData) => {
-  const productId = formData.get("productId") as string;
-  const amount = Number(formData.get("amount")) || 1;
+export type CartActionState = {
+  success: boolean;
+  message: string;
+};
 
-  if (!productId) {
-    throw new Error("Product ID missing");
-  }
+export const addToCartAction = async (
+  prevState: CartActionState,
+  formData: FormData,
+): Promise<CartActionState> => {
+  try {
+    const productId = formData.get("productId") as string;
+    const amount = Number(formData.get("amount")) || 1;
 
-  const cart = await fetchOrCreateCart();
+    if (!productId) {
+      return { success: false, message: "Product ID missing" };
+    }
 
-  const existingItem = await db.cartItems.findFirst({
-    where: { cartId: cart.id, productId },
-  });
+    const cart = await fetchOrCreateCart();
 
-  if (existingItem) {
-    await db.cartItems.update({
-      where: { id: existingItem.id },
-      data: { amount: existingItem.amount + amount },
+    const existingItem = await db.cartItems.findFirst({
+      where: { cartId: cart.id, productId },
     });
-  } else {
-    await db.cartItems.create({
-      data: { cartId: cart.id, productId, amount },
-    });
+
+    if (existingItem) {
+      await db.cartItems.update({
+        where: { id: existingItem.id },
+        data: { amount: existingItem.amount + amount },
+      });
+    } else {
+      await db.cartItems.create({
+        data: { cartId: cart.id, productId, amount },
+      });
+    }
+
+    await updateCart(cart);
+
+    revalidatePath("/cart");
+    revalidatePath("/", "layout");
+
+    return {
+      success: true,
+      message: "Added to cart 🛒",
+    };
+  } catch {
+    return {
+      success: false,
+      message: "Failed to add item to cart",
+    };
   }
-
-  await updateCart(cart);
-
-  revalidatePath("/cart");
-  revalidatePath("/", "layout");
-  redirect("/cart");
 };
 
 const fetchProduct = async (productId: string) => {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { toast } from "sonner";
 import { CardSubmitButton } from "../form/Buttons";
 import { toggleFavorite } from "@/utils/server/favorite";
@@ -25,7 +25,7 @@ export default function FavoriteToggleForm({
   favoriteId,
   onToggle,
 }: Props) {
-  const [state, formAction] = useFormState<FavoriteState, FormData>(
+  const [state, formAction] = useActionState<FavoriteState, FormData>(
     toggleFavorite,
     {
       ...initialState,
@@ -36,6 +36,8 @@ export default function FavoriteToggleForm({
   useEffect(() => {
     if (!state.message) return;
 
+    toast.dismiss();
+
     if (!state.success && state.code === "UNAUTHORIZED") {
       toast.error("Sign in to save favorites");
       return;
@@ -44,7 +46,7 @@ export default function FavoriteToggleForm({
     state.success ? toast.success(state.message) : toast.error(state.message);
 
     if (state.success) onToggle?.(state.favoriteId);
-  }, [state, onToggle]);
+  }, [state.success, state.message]);
 
   return (
     <form action={formAction}>

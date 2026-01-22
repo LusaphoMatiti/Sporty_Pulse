@@ -10,6 +10,7 @@ import { createReviewAction } from "@/utils/action";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { ActionResult } from "@/utils/app-error";
+import { toast } from "sonner";
 
 interface SubmitReviewProps {
   productId: string;
@@ -36,7 +37,10 @@ const SubmitReview = ({ productId }: SubmitReviewProps) => {
               const result = await createReviewAction(prevState, formData);
 
               if (result.success) {
-                router.push(`/products/${productId}`);
+                toast.success(result.message);
+                router.push(`/equipments/${productId}`);
+              } else {
+                toast.error(result.message);
               }
 
               return result;

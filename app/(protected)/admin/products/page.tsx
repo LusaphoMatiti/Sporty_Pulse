@@ -1,5 +1,5 @@
 import EmptyList from "@/components/global/EmptyList";
-import { deleteProductAction, fetchAdminProducts } from "@/utils/action";
+import { fetchAdminProducts } from "@/utils/action";
 import Link from "next/link";
 import { formatCurrency } from "@/utils/format";
 
@@ -13,7 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IconButton } from "@/components/form/Buttons";
-import FormContainer from "@/components/form/FormContainer";
+import DeleteProduct from "@/components/products/DeleteProduct";
 
 async function AdminProductsPage() {
   const items = await fetchAdminProducts();
@@ -78,12 +78,3 @@ async function AdminProductsPage() {
 }
 
 export default AdminProductsPage;
-
-function DeleteProduct({ productId }: { productId: string }) {
-  return (
-    <FormContainer action={deleteProductAction}>
-      <input type="hidden" name="productId" value={productId} />
-      <IconButton actionType="delete" />
-    </FormContainer>
-  );
-}
