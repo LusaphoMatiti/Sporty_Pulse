@@ -52,13 +52,13 @@ const Footer = () => {
               Our Story
             </h3>
             <a
-              href="#"
+              href="/about"
               className="mt-3 block text-sm text-gray-500 hover:text-foreground"
             >
               Company
             </a>
             <a
-              href="#"
+              href="/"
               className="mt-2 block text-sm text-gray-500 hover:text-foreground"
             >
               Community
@@ -70,25 +70,25 @@ const Footer = () => {
               Equipment
             </h3>
             <a
-              href="#"
+              href="/category/fitness/upper-body"
               className="mt-3 block text-sm text-gray-500 hover:text-foreground"
             >
               Upper Body
             </a>
             <a
-              href="#"
+              href="/category/fitness/lower-body"
               className="mt-2 block text-sm text-gray-500 hover:text-foreground"
             >
               Lower Body
             </a>
             <a
-              href="#"
+              href="/category/fitness/core"
               className="mt-2 block text-sm text-gray-500 hover:text-foreground"
             >
               Core
             </a>
             <a
-              href="#"
+              href="/category/fitness/full-body"
               className="mt-2 block text-sm text-gray-500 hover:text-foreground"
             >
               Full Body
