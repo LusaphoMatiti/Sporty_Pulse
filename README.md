@@ -26,13 +26,9 @@ Most small‑to‑medium e‑commerce platforms struggle with three core issues:
 
 ### Desktop
 
-> _Add high‑resolution screenshots showing:_
-
 ![Desktop](screenshots/desktop.png)
 
 ### Mobile
-
-> _Add mobile screenshots highlighting:_
 
 ![Mobile](screenshots/mobile.png)
 
