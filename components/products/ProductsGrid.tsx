@@ -45,8 +45,8 @@ type ProductItem = {
   name: string;
   image: string;
   price: number;
-  rating: number;
-  reviewCount: number;
+  rating?: number;
+  reviewCount?: number;
   description: string;
   favoriteId?: string | null;
 };
