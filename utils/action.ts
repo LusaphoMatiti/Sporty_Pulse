@@ -606,6 +606,7 @@ export const fetchProductsByMuscle = async (muscle: string) => {
   return db.products.findMany({
     where: { muscle },
     orderBy: { createdAt: "desc" },
+    include: { reviews: true },
   });
 };
 

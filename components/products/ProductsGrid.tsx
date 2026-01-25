@@ -40,7 +40,7 @@ function useScreenTier() {
   return tier;
 }
 
-type ProductItem = {
+export type ProductItem = {
   id: string;
   name: string;
   image: string;

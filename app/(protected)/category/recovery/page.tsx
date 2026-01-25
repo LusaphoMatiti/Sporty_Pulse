@@ -6,9 +6,24 @@ import MarketingLayout from "@/components/layouts/MarketingLayout";
 import WorkOut from "@/components/home/WorkOut";
 import PicQuote from "@/components/quote/PicQuote";
 import BreadCrumbs from "@/components/single-product/BreadCrumbs";
+import { ProductItem } from "@/components/products/ProductsGrid";
 
 export default async function Recovery() {
   const products = await fetchProductsByMuscle("recovery");
+
+  const productsWithRating: ProductItem[] = products.map((p) => ({
+    id: p.id,
+    name: p.name,
+    image: p.image,
+    price: p.price,
+    description: p.description,
+    rating:
+      p.reviews.length > 0
+        ? p.reviews.reduce((acc, r) => acc + r.rating, 0) / p.reviews.length
+        : 0,
+    reviewCount: p.reviews.length,
+    favoriteId: null,
+  }));
 
   return (
     <>
@@ -24,7 +39,7 @@ export default async function Recovery() {
           <>
             <section className="pt-12">
               <SectionTitle text="Recovery Tools" />
-              <ProductsGrid products={products} userId={null} />
+              <ProductsGrid products={productsWithRating} userId={null} />
             </section>
 
             <PicQuote
