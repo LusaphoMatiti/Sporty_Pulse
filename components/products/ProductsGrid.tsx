@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { formatCurrency } from "@/utils/format";
-import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import FavoriteToggleButtonClient from "./FavoriteToggleButtonClient";
 import { Button } from "../ui/button";
+import ProductRating from "@/components/single-product/ProductRating";
 
 function useScreenTier() {
   const [tier, setTier] = useState<"mobile" | "tablet" | "desktop">("mobile");
@@ -45,6 +45,9 @@ type ProductItem = {
   name: string;
   image: string;
   price: number;
+  rating: number;
+  reviewCount: number;
+  description: string;
   favoriteId?: string | null;
 };
 
@@ -146,6 +149,19 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
                             <h2 className="text-sm font-medium leading-snug line-clamp-2">
                               {name}
                             </h2>{" "}
+                            <div className="flex items-center gap-1 text-sm text-yellow-500">
+                              <span>⭐ {product.rating}</span>
+                              <span className="text-gray-500">
+                                (
+                                {product.reviewCount
+                                  ? product.reviewCount
+                                  : "0"}
+                                )
+                              </span>
+                            </div>
+                            <p className="text-sm text-muted-foreground leading-snug">
+                              {truncateWords(product.description, 8)}
+                            </p>
                             <p className="pt-2 text-lg font-bold text-gray-900 dark:text-gray-100">
                               {formattedPrice}
                             </p>
@@ -178,3 +194,7 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
 };
 
 export default ProductsGrid;
+
+function truncateWords(text: string, count = 8) {
+  return text.split(" ").slice(0, count).join(" ") + "…";
+}

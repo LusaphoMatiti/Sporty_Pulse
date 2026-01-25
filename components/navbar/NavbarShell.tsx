@@ -63,7 +63,7 @@ export default function NavbarShell({ numItemsInCart }: Props) {
       {/* MOBILE MENU */}
       {open && (
         <div className="lg:hidden border-t py-4">
-          <div className="flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-6 justify-center">
             {cenlinks.map(({ href, label }) => (
               <Link
                 key={href}
@@ -75,7 +75,7 @@ export default function NavbarShell({ numItemsInCart }: Props) {
               </Link>
             ))}
 
-            <div className="flex flex-row sm:justify-center gap-3 sm:gap-6 mt-5 w-full items-center">
+            <div className="flex flex-row justify-center gap-3 sm:gap-6 mt-5 w-full">
               <CartButton numItemsInCart={numItemsInCart} />
               <ModeToggle />
               <Search onOpen={() => setOpen(false)} /> {/* optional trigger */}
