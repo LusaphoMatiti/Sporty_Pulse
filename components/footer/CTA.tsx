@@ -7,7 +7,7 @@ const CTA = () => {
       <div className=" mx-auto px-4 py-16">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           {/* Text */}
-          <h2 className="max-w-xl text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+          <h2 className="max-w-xl text-2xl font-medium tracking-tight  xl:text-3xl dark:text-white">
             Sign up for exclusive offers and to be notified of the latest
             product drops
           </h2>

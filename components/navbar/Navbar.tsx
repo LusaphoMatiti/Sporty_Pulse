@@ -9,7 +9,7 @@ export default async function Navbar() {
     <nav className="border-b" aria-label="Main navigation">
       {/* Top bar */}
       <Container className="border-b">
-        <div className="py-3 flex justify-center text-xs font-semibold text-gray-600 dark:text-white">
+        <div className="py-3 flex justify-center text-xs font-medium text-gray-600 dark:text-white tracking-wider sm:leading-loose">
           <p>Welcome to our store</p>
         </div>
       </Container>

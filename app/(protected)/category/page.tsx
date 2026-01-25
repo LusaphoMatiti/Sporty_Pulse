@@ -37,7 +37,7 @@ const ShopByCategory = () => {
                     {/* Content */}
 
                     <div className="relative z-10 h-full w-full flex flex-col justify-center items-center text-center px-4 sm:px-8">
-                      <p className="max-w-2xl text-2xl  lg:text-5xl font-bold  sm:text-4xl text-white">
+                      <p className="max-w-2xl text-2xl  lg:text-5xl font-semibold tracking-wider  sm:text-4xl text-white">
                         Fitness
                       </p>
                     </div>
@@ -70,7 +70,7 @@ const ShopByCategory = () => {
                     {/* Content */}
 
                     <div className="relative z-10 h-full w-full flex items-center justify-center text-center px-4 sm:px-8">
-                      <p className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white">
+                      <p className="text-2xl sm:text-4xl lg:text-5xl font-semibold tracking-wider text-white">
                         Recovery
                       </p>
                     </div>

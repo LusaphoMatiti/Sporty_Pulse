@@ -32,8 +32,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        bebas: ["var(--font-bebas)", "sans-serif"],
       },
     },
   },

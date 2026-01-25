@@ -187,6 +187,7 @@
   }
   body {
     @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))];
+    @apply tracking-wider sm:leading-loose;
   }
 }
 

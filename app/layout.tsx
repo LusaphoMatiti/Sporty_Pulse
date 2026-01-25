@@ -6,6 +6,12 @@ import ClientProviders from "./client-providers";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import AuthToast from "@/components/auth/AuthToast";
+import { Bebas_Neue } from "next/font/google";
+
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -60,7 +66,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" className={bebas.className}>
         <body className="antialiased">
           <ClientProviders>
             <Navbar />

@@ -67,7 +67,7 @@ function LinksDropdown() {
               <DropdownMenuItem
                 key={link.href}
                 onClick={() => router.push(link.href)}
-                className="capitalize w-full cursor-pointer"
+                className="capitalize w-full cursor-pointer tracking-wider sm:leading-loose "
               >
                 {link.label}
               </DropdownMenuItem>

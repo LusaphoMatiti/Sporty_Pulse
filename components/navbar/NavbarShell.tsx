@@ -20,7 +20,7 @@ export default function NavbarShell({ numItemsInCart }: Props) {
 
   return (
     <>
-      <div className="relative flex items-center justify-between py-4 px-4 lg:px-8">
+      <div className="relative flex items-center justify-between py-4 px-4 lg:px-8 ">
         {/* LEFT — Hamburger (mobile only) */}
         <div className="flex items-center w-12 lg:hidden">
           <Button
@@ -40,7 +40,7 @@ export default function NavbarShell({ numItemsInCart }: Props) {
 
         {/* DESKTOP LINKS */}
         <Suspense>
-          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6">
+          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6 tracking-wider sm:leading-loose">
             {cenlinks.map(({ href, label }) => (
               <Link
                 key={href}
@@ -54,7 +54,7 @@ export default function NavbarShell({ numItemsInCart }: Props) {
         </Suspense>
 
         {/* RIGHT — Icons */}
-        <div className="flex items-center w-12 lg:w-auto justify-end mr-10">
+        <div className="flex items-center w-12 lg:w-auto justify-end mr-10 tracking-wider sm:leading-loose">
           {/* Pass isMobile prop */}
           <NavbarClient numItemsInCart={numItemsInCart} />
         </div>
