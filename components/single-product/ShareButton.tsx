@@ -19,7 +19,7 @@ import {
 
 function ShareButton({ productId, name }: { productId: string; name: string }) {
   const url = process.env.NEXT_PUBLIC_WEBSITE_URL;
-  const shareLink = `${url}/products/${productId}`;
+  const shareLink = `${url}/equipments/${productId}`;
 
   return (
     <Popover>

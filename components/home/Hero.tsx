@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <main className="relative w-full min-h-[70vh] lg:min-h-[60vh] overflow-hidden flex text-center justify-center">
+    <main className="relative w-full min-h-[60vh] sm:min-h-[65vh] lg:min-h-[60vh] overflow-hidden flex text-center justify-center">
       <Image
         src="/sportsman.jpg"
         alt="Training"
@@ -12,9 +12,9 @@ const Hero = () => {
         w-full
         h-full
         object-cover
-        object-[50%_80%]
+        object-[50%_85%]
+        sm:object-[50%_75%]
         lg:object-[50%_60%]
-        sm:object-[50%_100%]
         "
         fill
         placeholder="blur"
@@ -26,18 +26,18 @@ const Hero = () => {
 
       {/* Content */}
 
-      <div className="relative z-10 w-full max-w-3xl px-6 sm:px-10 lg:px-16 flex flex-col justify-center items-center text-center">
-        <h1 className="max-w-2xl font-bold text-3xl sm:text-4xl lg:text-5xl  text-white">
+      <div className="relative z-10 w-full max-w-3xl px-4 sm:px-8 lg:px-16 flex flex-col justify-center items-center">
+        <h1 className="max-w-2xl font-bold text-2xl sm:text-4xl lg:text-5xl  text-white">
           Too busy for the gym?
         </h1>
-        <p className="mt-6 max-w-xl text-sm sm:text-base text-white ">
+        <p className="mt-5 sm:mt-6 max-w-xl text-sm sm:text-base leading-relaxed sm:leading-loose text-white ">
           Sporty Pulse helps you stay active and recover at home. Turn any
           corner of your space into a personal fitness zone without sacrificing
           time or convience.
         </p>
         <Button
           size="lg"
-          className="border border-white p-5 text-sm text-white w-30 mt-10 rounded-lg backdrop-blur-sm hover:bg-white/20 ease-in transition"
+          className="border border-white px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base text-white w-30 mt-8 sm:mt-10 rounded-lg backdrop-blur-sm hover:bg-white/20 ease-in transition"
           aria-label="Open shop"
         >
           <Link href="/equipments">Shop Now</Link>

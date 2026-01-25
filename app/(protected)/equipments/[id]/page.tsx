@@ -37,26 +37,26 @@ export default async function SingleProductsPage({ params }: PageProps) {
     user && !(await findExistingReview(user.id, product.id));
 
   return (
-    <section>
+    <>
       <BreadCrumbs currentLabel={name} />
       <MarketingLayout>
         <TrackView productId={id} />
         <div className="mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16">
           {/* IMAGE COLUMN */}
-          <div className="relative h-full">
+          <div className="relative w-full h-[260px] sm:h-[320px] md:h-[420px] lg:h-[500px]">
             <Image
               src={image}
               alt={name}
               fill
               sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
               priority
-              className="w-full rounded object-contain"
+              className="object-contain"
             />
           </div>
 
           {/* PRODUCT DETAILS COLUMN */}
           <div>
-            <div className="flex gap-x-8 items-center">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-x-8">
               <h1 className="capitalize text-3xl font-bold">{name}</h1>
               <div className="flex items-center gap-x-2">
                 <FavoriteToggleButton productId={id} />
@@ -67,7 +67,7 @@ export default async function SingleProductsPage({ params }: PageProps) {
             <ProductRating productId={id} />
             <h4 className="text-xl mt-2">{company}</h4>
 
-            <p className="mt-3 text-md bg-muted inline-block p-2 rounded">
+            <p className="mt-4 text-3xl font-bold tracking-tight">
               {dollarsAmount}
             </p>
 
@@ -82,11 +82,13 @@ export default async function SingleProductsPage({ params }: PageProps) {
         <ProductReviews productId={id} />
 
         {reviewDoesNotExist && <SubmitReview productId={id} />}
-        <SimilarProducts
-          muscle={product.muscle}
-          currentProductId={product.id}
-        />
+        <div className="mt-20">
+          <SimilarProducts
+            muscle={product.muscle}
+            currentProductId={product.id}
+          />
+        </div>
       </MarketingLayout>
-    </section>
+    </>
   );
 }

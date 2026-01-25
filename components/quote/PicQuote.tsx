@@ -20,7 +20,7 @@ const PicQuote = ({ quote, image }: Prop) => {
         mt-20
       "
     >
-      <div className="relative h-[420px] w-screen overflow-hidden">
+      <div className="relative h-[320px] sm:h-[380px] lg:h-[460px] w-screen overflow-hidden">
         <Image
           src={image}
           alt="Training"
@@ -51,7 +51,7 @@ const PicQuote = ({ quote, image }: Prop) => {
       px-6 sm:px-10 lg:px-16
     "
           >
-            <h3 className="max-w-2xl font-bold text-3xl sm:text-4xl lg:text-5xl text-white">
+            <h3 className="max-w-3xl font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl text-white">
               {quote}
             </h3>
           </div>

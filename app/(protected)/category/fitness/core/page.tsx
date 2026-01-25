@@ -17,12 +17,12 @@ export default async function CoreCategoryPage({ searchParams }: PageProps) {
   return (
     <>
       <BreadCrumbs />
-      <WorkOut
-        video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1768583253/13265207_1920_1080_50fps_iofvvu.mp4"
-        quote="Strong cores don’t happen by accident."
-      />
 
       <MarketingLayout>
+        <WorkOut
+          video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1768583253/13265207_1920_1080_50fps_iofvvu.mp4"
+          quote="Strong cores don’t happen by accident."
+        />
         <Core searchParams={resolvedSearchParams} />
 
         <PicQuote

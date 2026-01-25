@@ -17,11 +17,12 @@ export default async function CoreCategoryPage({ searchParams }: PageProps) {
   return (
     <>
       <BreadCrumbs />
-      <WorkOut
-        video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1768588495/Untitled_video_-_Made_with_Clipchamp_7_hcnzns.mp4"
-        quote="Leg day doesn’t get skipped at home."
-      />
+
       <MarketingLayout>
+        <WorkOut
+          video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1768588495/Untitled_video_-_Made_with_Clipchamp_7_hcnzns.mp4"
+          quote="Leg day doesn’t get skipped at home."
+        />
         <LowerBody searchParams={resolvedSearchParams} />
         <PicQuote
           image="/lowerbody.jpg"

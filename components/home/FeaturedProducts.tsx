@@ -17,7 +17,7 @@ export default async function FeaturedProducts() {
     products.map(async (product) => ({
       ...product,
       favoriteId: userId ? await fetchFavoriteId(product.id) : null,
-    }))
+    })),
   );
 
   return (

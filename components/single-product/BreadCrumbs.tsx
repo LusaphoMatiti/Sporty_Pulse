@@ -49,7 +49,7 @@ const BreadCrumbs = ({ currentLabel }: BreadcrumbProps) => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 {isLast ? (
-                  <BreadcrumbPage className="capitalize text-lg">
+                  <BreadcrumbPage className="capitalize text-lg text-foreground font-medium">
                     {label}
                   </BreadcrumbPage>
                 ) : (

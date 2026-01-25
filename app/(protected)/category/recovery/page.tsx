@@ -10,23 +10,30 @@ import BreadCrumbs from "@/components/single-product/BreadCrumbs";
 export default async function Recovery() {
   const products = await fetchProductsByMuscle("recovery");
 
-  if (!products.length) return <EmptyList />;
-
   return (
-    <MarketingLayout>
+    <>
       <BreadCrumbs />
       <WorkOut
         video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1768595925/4920812-hd_1920_1080_25fps_nqh29o.mp4"
         quote="Your next performance starts with recovery."
       />
-      <section className="pt-8 mt-20">
-        <SectionTitle text="Recovery Tools" />
-        <ProductsGrid products={products} userId={null} />
-      </section>
-      <PicQuote
-        image="/Recovery.jpg"
-        quote="Built in training. Revealed in recovery."
-      />
-    </MarketingLayout>
+      <MarketingLayout>
+        {!products.length ? (
+          <EmptyList />
+        ) : (
+          <>
+            <section className="pt-12">
+              <SectionTitle text="Recovery Tools" />
+              <ProductsGrid products={products} userId={null} />
+            </section>
+
+            <PicQuote
+              image="/Recovery.jpg"
+              quote="Built in training. Revealed in recovery."
+            />
+          </>
+        )}
+      </MarketingLayout>
+    </>
   );
 }

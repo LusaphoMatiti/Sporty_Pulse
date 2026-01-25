@@ -1,4 +1,3 @@
-import Container from "@/components/global/Container";
 import LoadingContainer from "@/components/global/LoadingContainer";
 import SectionTitle from "@/components/global/SectionTitle";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,16 +8,18 @@ import { Suspense } from "react";
 const ShopByCategory = () => {
   return (
     <Suspense fallback={<LoadingContainer />}>
-      <section className="pt-8 mt-20">
-        <SectionTitle text="Training Categories" />
+      <section className=" sm:pt-2 mt-2">
+        <div className="px-10 pt-5">
+          <SectionTitle text="Training Categories" />
+        </div>
 
-        <div className="pt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="pt-5 px-2 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3">
           {/* Fitness */}
           <article className="group relative">
             <Link href="/category/fitness">
-              <Card className="group overflow-hidden rounded-xl border transition hover:shadow-lg">
+              <Card className="group rounded-none overflow-hidden border transition hover:shadow-lg ">
                 <CardContent className="p-0">
-                  <div className="relative aspect-[4/3]  w-full overflow-hidden">
+                  <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/3] w-full overflow-hidden">
                     <Image
                       src="/Fitness.jpg"
                       alt="Fitness"
@@ -35,8 +36,8 @@ const ShopByCategory = () => {
 
                     {/* Content */}
 
-                    <div className="relative z-10 h-full max-w-7xl mx-auto p-20 flex flex-col justify-center items-center text-center">
-                      <p className="max-w-2xl lg:text-5xl font-bold   sm:text-4xl text-white">
+                    <div className="relative z-10 h-full w-full flex flex-col justify-center items-center text-center px-4 sm:px-8">
+                      <p className="max-w-2xl text-2xl  lg:text-5xl font-bold  sm:text-4xl text-white">
                         Fitness
                       </p>
                     </div>
@@ -49,14 +50,14 @@ const ShopByCategory = () => {
           {/* Recovery */}
           <article className="group relative">
             <Link href="/category/recovery">
-              <Card className="overflow-hidden rounded-2xl border transition hover:shadow-xl">
+              <Card className="overflow-hidden rounded-none border transition hover:shadow-xl">
                 <CardContent className="p-0">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/3] w-full overflow-hidden">
                     <Image
                       src="/Recovery.jpg"
                       alt="Recovery"
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 768px) 100vw, (max-width:1200px) 50vw, 30vw"
                       className="
                           object-cover
                           transition-transform
@@ -68,8 +69,10 @@ const ShopByCategory = () => {
 
                     {/* Content */}
 
-                    <div className="relative z-10 h-full flex items-center justify-center">
-                      <p className="text-4xl font-bold text-white">Recovery</p>
+                    <div className="relative z-10 h-full w-full flex items-center justify-center text-center px-4 sm:px-8">
+                      <p className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white">
+                        Recovery
+                      </p>
                     </div>
                   </div>
                 </CardContent>

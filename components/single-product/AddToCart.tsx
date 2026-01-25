@@ -35,7 +35,7 @@ function AddToCart({ productId }: { productId: string }) {
   }, [state, router]);
 
   return (
-    <div className="mt-4">
+    <div className="mt-8 space-y-6">
       <SelectProductAmount
         mode={Mode.SingleProduct}
         amount={amount}

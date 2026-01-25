@@ -11,17 +11,16 @@ import MarketingLayout from "@/components/layouts/MarketingLayout";
 
 import { getServerUserId } from "@/utils/server/auth";
 
-// app/page.tsx (NO CHANGE)
 export default async function HomePage() {
   const userId = await getServerUserId();
 
   return (
     <MarketingLayout>
       <Hero />
-      <Container className="py-30 px-10 sm:py-10">
+      <div className="pt-5 sm:px-10">
         <ShopByCategory />
-      </Container>
-      <div className="mt-20">
+      </div>
+      <div className="mt-3 sm:mt-3">
         <WorkOut
           video="https://res.cloudinary.com/dsoxsrjn2/video/upload/f_auto,q_auto,w_1920/homeworkout_2_mwfnpw.mp4"
           quote="No gym. No excuses. Just work."
@@ -29,7 +28,7 @@ export default async function HomePage() {
       </div>
 
       <Suspense fallback={<LoadingContainer />}>
-        <Container className="py-35 px-10 sm:py-10">
+        <Container className="py-10 px-10 sm:py-5">
           <FeaturedProducts />
         </Container>
       </Suspense>

@@ -9,11 +9,12 @@ type Prop = {
 
 export default function WorkOut({ video, quote }: Prop) {
   const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     if (!videoRef.current) return;
 
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     videoRef.current.playbackRate = prefersReducedMotion ? 1 : 1.25;
@@ -32,7 +33,7 @@ export default function WorkOut({ video, quote }: Prop) {
         bg-black
       "
     >
-      <div className="relative h-[420px] w-full overflow-hidden">
+      <div className="relative h-[260px] sm:h-[360px] lg:h-[620px] w-full overflow-hidden">
         <video
           ref={videoRef}
           autoPlay
@@ -41,27 +42,28 @@ export default function WorkOut({ video, quote }: Prop) {
           playsInline
           preload="none"
           poster="/homeworkout-poster.jpg"
-          className="absolute left-1/2 top-1/2 h-[140%] w-[140%] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+          className="absolute left-1/2 top-1/2 h-full w-[140%] -translate-x-1/2 -translate-y-1/2 object-cover"
         >
           <source src={video} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/45">
-          {/* Content */}
-          <div
-            className="
-      absolute inset-0
-      z-10
-      flex flex-col
-      items-center
-      justify-center
-      text-center
-      px-6 sm:px-10 lg:px-16
-    "
-          >
-            <h3 className="max-w-2xl font-bold text-3xl sm:text-4xl lg:text-5xl text-white">
-              {quote}
-            </h3>
-          </div>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/45 z-10" />
+
+        {/* Content */}
+        <div
+          className="
+            absolute inset-0 z-20
+            flex flex-col
+            items-center
+            justify-center
+            text-center
+            px-6 sm:px-10 lg:px-16
+          "
+        >
+          <h3 className="max-w-2xl font-bold text-2xl sm:text-4xl lg:text-5xl text-white">
+            {quote}
+          </h3>
         </div>
       </div>
     </section>
