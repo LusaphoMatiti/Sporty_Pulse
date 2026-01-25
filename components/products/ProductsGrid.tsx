@@ -47,7 +47,7 @@ export type ProductItem = {
   price: number;
   rating?: number;
   reviewCount?: number;
-  description: string;
+  description?: string | null;
   favoriteId?: string | null;
 };
 
@@ -160,7 +160,7 @@ const ProductsGrid = ({ products, userId }: ProductsGridProps) => {
                               </span>
                             </div>
                             <p className="text-sm text-muted-foreground leading-snug">
-                              {truncateWords(product.description, 8)}
+                              {truncateWords(product.description ?? "", 8)}
                             </p>
                             <p className="pt-2 text-lg font-bold text-gray-900 dark:text-gray-100">
                               {formattedPrice}
