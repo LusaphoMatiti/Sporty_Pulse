@@ -21,7 +21,8 @@ export default async function CoreCategoryPage({ searchParams }: PageProps) {
 
       <MarketingLayout>
         <WorkOut
-          video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1769431303/upperbody_video_mwnson.mp4"
+          video="https://res.cloudinary.com/dsoxsrjn2/video/upload/f_mp4,vc_h264,profile_baseline,ac_aac/v1769431303/upperbody_video_mwnson.mp4
+"
           quote="Strength shows when there’s nowhere to hide."
         />
         <UpperBody searchParams={resolvedSearchParams} />
