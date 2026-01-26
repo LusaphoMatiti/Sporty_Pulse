@@ -20,7 +20,7 @@ export default async function CoreCategoryPage({ searchParams }: PageProps) {
 
       <MarketingLayout>
         <WorkOut
-          video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1768584703/5751971-uhd_3840_2160_25fps_gaya7i.mp4"
+          video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1769429499/fullbody_video_ozisy8.mp4"
           quote="Every rep should count."
         />
         <Fullbody searchParams={resolvedSearchParams} />

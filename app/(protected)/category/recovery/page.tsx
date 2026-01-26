@@ -29,7 +29,7 @@ export default async function Recovery() {
     <>
       <BreadCrumbs />
       <WorkOut
-        video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1768595925/4920812-hd_1920_1080_25fps_nqh29o.mp4"
+        video="https://res.cloudinary.com/dsoxsrjn2/video/upload/v1769429590/recovery_video_zhhv3r.mp4"
         quote="Your next performance starts with recovery."
       />
       <MarketingLayout>
