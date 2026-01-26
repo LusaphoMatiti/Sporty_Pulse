@@ -18,6 +18,13 @@ export default function WorkOut({ video, quote }: Prop) {
     ).matches;
 
     videoRef.current.playbackRate = prefersReducedMotion ? 1 : 1.25;
+
+    const playPromise = videoRef.current.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        console.log("Autoplay blocked on mobile");
+      });
+    }
   }, []);
 
   return (
@@ -40,7 +47,7 @@ export default function WorkOut({ video, quote }: Prop) {
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           poster="/homeworkout-poster.jpg"
           className="absolute left-1/2 top-1/2 h-full w-[140%] -translate-x-1/2 -translate-y-1/2 object-cover"
         >
