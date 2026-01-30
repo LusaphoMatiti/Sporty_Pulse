@@ -1,6 +1,5 @@
 "use client";
 
-import { VscCode } from "react-icons/vsc";
 import Link from "next/link";
 
 const Logo = () => {

@@ -2,7 +2,6 @@ import PriceRangeFilter from "./PriceRangeFilter";
 import { CategoryFilter } from "./CategoryFilter";
 import { SortSelect } from "./SortSelect";
 import { fetchFilteredProducts } from "@/utils/action";
-import ProductsGrid from "@/components/products/ProductsGrid";
 
 interface PageProps {
   searchParams: {
